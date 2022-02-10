@@ -1,0 +1,3217 @@
+   Switch0   Switch>EN
+   Switch0   Switch#CONF T
+   Switch0   Switch(config)#Hostname A1
+   Switch0   A1(config)#vlan 5
+   Switch0   A1(config-vlan)#name st1
+   Switch0   A1(config-vlan)#exit
+   Switch1   Switch>en
+   Switch1   Switch#conf t
+   Switch1   Switch(config)#hostname A2
+   Switch1   A2(config)#vlan 10
+   Switch1   A2(config-vlan)#name st10
+   Switch1   A2(config-vlan)#exit
+   Switch1   A2(config)#vlan 10
+   Switch1   A2(config-vlan)#end
+   Switch1   A2#sh vlan brief
+   Switch2   Switch>en
+   Switch2   Switch#conf t
+   Switch2   Switch(config)#hostname A3
+   Switch2   A3(config)#vlan 20
+   Switch2   A3(config-vlan)#name st20
+   Switch2   A3(config-vlan)#exit
+   Switch2   A3(config)#end
+   Switch2   A3#sh vlan brief
+   Switch0   A1(config)#int range f0/1-2
+   Switch0   A1(config-if-range)#switchport mode access 
+   Switch0   A1(config-if-range)#switchport access vlan 5
+   Switch1   A2#conf t
+   Switch1   A2(config)#int range f0/1-2
+   Switch1   A2(config-if-range)#switchport mode access 
+   Switch1   A2(config-if-range)#switchport access vlan 10
+   Switch2   A3#conf t
+   Switch2   A3(config)#int range f0/1-2
+   Switch2   A3(config-if-range)#switchport Mode Access 
+   Switch2   A3(config-if-range)#switchport access vlan 20
+   Switch0   A1(config-if-range)#exit
+   Switch0   A1(config)#int range f0/3-4
+   Switch0   A1(config-if-range)#switchport mode trunk 
+   Switch1   A2(config-if-range)#exit
+   Switch1   A2(config)#int range f0/3-4
+   Switch1   A2(config-if-range)#switchport mode trunk 
+   Switch2   A3(config-if-range)#exit
+   Switch2   A3(config)#int range f0/3-4
+   Switch2   A3(config-if-range)#switchport mode trunk 
+   Multilayer Switch0   Switch>en
+   Multilayer Switch0   Switch#conf t
+   Multilayer Switch0   Switch(config)#hostname R1
+   Multilayer Switch0   R1(config)#int range f0/1-
+   Multilayer Switch0   R1(config)#int range f0/1-3
+   Multilayer Switch0   R1(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch0   R1(config-if-range)#switchport mode trunk 
+   Multilayer Switch1   Switch>en
+   Multilayer Switch1   Switch#conf t
+   Multilayer Switch1   Switch(config)#hostname R2
+   Multilayer Switch1   R2(config)#int range f0/1-3
+   Multilayer Switch1   R2(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch1   R2(config-if-range)#switchport mode trunk 
+   Switch0   A1(config-if-range)#end
+   Switch0   A1#sh vlan brief
+   Multilayer Switch0   R1(config-if-range)#end
+   Multilayer Switch0   R1#sh run
+   Multilayer Switch0   R1#conf t
+   Multilayer Switch0   R1(config)#vlan 5
+   Multilayer Switch0   R1(config-vlan)#name st1
+   Multilayer Switch0   R1(config-vlan)#vlan 10
+   Multilayer Switch0   R1(config-vlan)#name st10
+   Multilayer Switch0   R1(config-vlan)#vlan 20
+   Multilayer Switch0   R1(config-vlan)#name st20
+   Multilayer Switch0   R1(config-vlan)#end
+   Multilayer Switch0   R1#sh vlan brief
+   Multilayer Switch1   R2(config-if-range)#end
+   Multilayer Switch1   R2#conf t
+   Multilayer Switch1   R2(config)#vlan 5
+   Multilayer Switch1   R2(config-vlan)#name st1
+   Multilayer Switch1   R2(config-vlan)#vlan 10
+   Multilayer Switch1   R2(config-vlan)#name st10
+   Multilayer Switch1   R2(config-vlan)#vlan 20
+   Multilayer Switch1   R2(config-vlan)#name st20
+   Multilayer Switch1   R2(config-vlan)#end
+   Multilayer Switch1   R2#sh vlan brief
+   Switch1   A2(config-if-range)#end
+   Switch1   A2#sh vlan br
+   Switch2   A3(config-if-range)#end
+   Switch2   A3#sh vl br
+   Switch0   A1#conf t
+   Switch0   A1(config)#int range f0/3-4
+   Switch0   A1(config-if-range)#switchport port-security mac-address sticky 
+   Switch0   A1(config-if-range)#switchport port-security maximum 4
+   Switch0   A1(config-if-range)#switchport port-security violation shutdown 
+   Switch1   A2#conf t
+   Switch1   A2(config)#int range f0/3-4
+   Switch1   A2(config-if-range)#switchport port-security mac-address sticky 
+   Switch1   A2(config-if-range)#switchport port-security maximum 4
+   Switch1   A2(config-if-range)#switchport port-security violation shutdown 
+   Switch2   A3#conf t
+   Switch2   A3(config)#int range f0/3-4
+   Switch2   A3(config-if-range)#switchport port-security mac-address sticky 
+   Switch2   A3(config-if-range)#switchport port-security maximum 4
+   Switch2   A3(config-if-range)#switchport port-security violation shutdown 
+   Multilayer Switch0   R1#sh mac address-table 
+   Switch0   A1(config-if-range)#eexit
+   Switch0   A1(config-if-range)#exit
+   Switch0   A1(config)#spanning-tree mode rapid-pvst 
+   Switch0   A1(config)#spanning-tree portfast bpduguard default 
+   Switch1   A2(config-if-range)#exit
+   Switch1   A2(config)#spanning-tree mode rapid-pvst 
+   Switch1   A2(config)#spanning-tree portfast bpduguard default 
+   Switch2   A3(config-if-range)#exit
+   Switch2   A3(config)#end
+   Switch2   A3#onf t
+   Switch2   A3#conf t
+   Switch2   A3(config)#spanning-tree mode rapid-pvst 
+   Switch2   A3(config)#spanning-tree portfast bpduguard default 
+   Switch0   A1(config)#int range f0/1-2
+   Switch0   A1(config-if-range)#storm-control broadcast level ?
+   Switch0   A1(config-if-range)#storm-control broadcast level 40
+   Switch1   A2(config)#int range f0/1-2
+   Switch1   A2(config-if-range)#storm-control broadcast level 40
+   Switch2   A3(config)#int range f0/1-2
+   Switch2   A3(config-if-range)#storm-control broadcast level 40
+   Switch0   A1(config-if-range)#exit
+   Switch0   A1(config)#int range f0/1-2
+   Switch0   A1(config-if-range)#no storm-control broadcast level 40
+   Switch0   A1(config-if-range)#int range f0/3-4
+   Switch0   A1(config-if-range)#storm-control broadcast level 40
+   Switch0   A1(config-if-range)#exit
+   Switch0   A1(config)#int range f0/1-2
+   Switch0   A1(config-if-range)#switchport nonegotiate 
+   Switch0   A1(config-if-range)#end
+   Switch1   A2(config-if-range)#int range f0/1-2
+   Switch1   A2(config-if-range)#no storm-control broadcast level 40
+   Switch1   A2(config-if-range)#exit
+   Switch1   A2(config)#int range f0/3-4
+   Switch1   A2(config-if-range)#storm-control broadcast level 40
+   Switch1   A2(config-if-range)#exit
+   Switch1   A2(config)#int range f0/1-2
+   Switch1   A2(config-if-range)#switchport nonegotiate 
+   Switch2   A3(config-if-range)#int range f0/1-2
+   Switch2   A3(config-if-range)#no storm-control broadcast level 40
+   Switch2   A3(config-if-range)#exit
+   Switch2   A3(config)#int range f0/3-4
+   Switch2   A3(config-if-range)#storm-control broadcast level 40
+   Switch2   A3(config-if-range)#int range f0/1-2
+   Switch2   A3(config-if-range)#switchport nonegotiate 
+   Switch2   A3(config-if-range)#end
+   Switch2   A3#sh run
+   Switch0   A1#sh int trunk 
+   Multilayer Switch0   R1#sh int tr
+   Multilayer Switch0   R1#conf t
+   Multilayer Switch0   R1(config)#int vlan 5
+   Multilayer Switch0   R1(config-if)#ip address 192.168.5.3 255.255.255.0
+   Multilayer Switch0   R1(config-if)#standby ip 192.168.5.1
+   Multilayer Switch0   R1(config-if)#no standby ip 192.168.5.1
+   Multilayer Switch0   R1(config-if)#standby ip 192.168.5.1
+   Multilayer Switch0   R1(config-if)#standby preempt 
+   Multilayer Switch0   R1(config-if)#exit
+   Multilayer Switch0   R1(config)#int vlan 10
+   Multilayer Switch0   R1(config-if)#ip address 192.168.10.3 255.255.255.255.0
+   Multilayer Switch0   R1(config-if)#ip address 192.168.10.3 255.255.255.0
+   Multilayer Switch0   R1(config-if)#standby 10 ip 192.168.10.1
+   Multilayer Switch0   R1(config-if)#standby 10 preempt 
+   Multilayer Switch0   R1(config-if)#exit
+   Multilayer Switch0   R1(config)#int vlan 20
+   Multilayer Switch0   R1(config-if)#ip address 192.168.20.3 255.255.255.255.0
+   Multilayer Switch0   R1(config-if)#ip address 192.168.20.3 255.255.255.0
+   Multilayer Switch0   R1(config-if)#standby 20 ip 192.168.20.1
+   Multilayer Switch0   R1(config-if)#standby 20 preempt 
+   Multilayer Switch0   R1(config-if)#end
+   Multilayer Switch1   R2>en
+   Multilayer Switch1   R2#conf t
+   Multilayer Switch1   R2(config)#int vlan 5
+   Multilayer Switch1   R2(config-if)#ip address 192.168.5.3 255.255.255.0
+   Multilayer Switch1   R2(config-if)#standby ip 192.168.5.1 
+   Multilayer Switch1   R2(config-if)#standby priority 100
+   Multilayer Switch1   R2(config-if)#standby preempt 
+   Multilayer Switch1   R2(config-if)#exit
+   Multilayer Switch1   R2(config)#int vlan 10
+   Multilayer Switch1   R2(config-if)#ip address 192.168.10.3 255.255.255.0
+   Multilayer Switch1   R2(config-if)#standby 10 ip 192.168.10.1
+   Multilayer Switch1   R2(config-if)#standby 10 priority 100
+   Multilayer Switch1   R2(config-if)#standby 10 preempt 
+   Multilayer Switch1   R2(config-if)#exit
+   Multilayer Switch1   R2(config)#int vlan 20
+   Multilayer Switch1   R2(config-if)#ip address 192.168.20.3  255.255.255.0
+   Multilayer Switch1   R2(config-if)#standby 20 ip 192.168.20.1
+   Multilayer Switch1   R2(config-if)#standby 20 priority 100
+   Multilayer Switch1   R2(config-if)#standby 20 preempt 
+   Multilayer Switch1   R2(config-if)#end
+   Multilayer Switch1   R2#sh standby fastEthernet 0/0
+   Multilayer Switch0   R1#sh standby fastEthernet 0/0
+   Multilayer Switch0   R1#conf t
+   Multilayer Switch0   R1(config)#ip dhcp excluded-address 192.168.5.1 192.168.5.3
+   Multilayer Switch0   R1(config)#ip dhcp excluded-address 192.168.10.1 192.168.10.3
+   Multilayer Switch0   R1(config)#ip dhcp excluded-address 192.168.20.1 192.168.20.3
+   Multilayer Switch0   R1(config)#ip dhcp pool st1
+   Multilayer Switch0   R1(dhcp-config)#network 192.168.5.0 255.255.255.0
+   Multilayer Switch0   R1(dhcp-config)#default-router 192.168.5.1
+   Multilayer Switch0   R1(dhcp-config)#exit
+   Multilayer Switch0   R1(config)#ip dhcp pool st10
+   Multilayer Switch0   R1(dhcp-config)#network 192.168.10.0 255.255.255.0
+   Multilayer Switch0   R1(dhcp-config)#default-router 192.168.10.1 
+   Multilayer Switch0   R1(dhcp-config)#exit
+   Multilayer Switch0   R1(config)#ip dhcp pool st20
+   Multilayer Switch0   R1(dhcp-config)#network 192.168.20.0 255.255.255.0
+   Multilayer Switch0   R1(dhcp-config)#default-router 192.168.20.1
+   Multilayer Switch0   R1(dhcp-config)#exit
+   Multilayer Switch0   R1(config)#end
+   Multilayer Switch0   R1#conf t
+   Multilayer Switch0   R1(config)#ip routing 
+   Multilayer Switch1 p   R2#conf t
+   Multilayer Switch1 p   R2(config)#ip dhcp excluded-address 192.168.5.1 192.168.5.3
+   Multilayer Switch1 p   R2(config)#ip dhcp excluded-address 192.168.10.1 192.168.10.3
+   Multilayer Switch1 p   R2(config)#ip dhcp excluded-address 192.168.20.1 192.168.20.3
+   Multilayer Switch1 p   R2(config)#ip dhcp pool st1
+   Multilayer Switch1 p   R2(dhcp-config)#network 192.168.5.0 255.255.255.0
+   Multilayer Switch1 p   R2(dhcp-config)#default-router 192.168.5.1
+   Multilayer Switch1 p   R2(dhcp-config)#EXIT
+   Multilayer Switch1 p   R2(config)#ip dhcp pool st10
+   Multilayer Switch1 p   R2(dhcp-config)#network 192.168.10.0 255.255.255.0
+   Multilayer Switch1 p   R2(dhcp-config)#default-router 192.168.10.1
+   Multilayer Switch1 p   R2(dhcp-config)#exit
+   Multilayer Switch1 p   R2(config)#ip dh pool st20
+   Multilayer Switch1 p   R2(dhcp-config)#network 192.168.20.0 255.255.255.0
+   Multilayer Switch1 p   R2(dhcp-config)#default-router 192.168.20.1
+   Multilayer Switch1 p   R2(dhcp-config)#exit
+   Multilayer Switch1 p   R2(config)#ip routing
+   Router0   Router>en
+   Router0   Router#conf t
+   Router0   Router(config)#int f0/0
+   Router0   Router(config-if)#ip address 192.168.1.1 255.255.255.0
+   Router0   Router(config-if)#no shut
+   Router0   Router(config-if)#exit
+   Router0   Router(config)#int f0/1
+   Router0   Router(config-if)#ip address 192.168.2.1 255.255.255.0
+   Router0   Router(config-if)#no shut
+   Router0   Router(config-if)#exit
+   Router0   Router(config)#ip route 0.0.0.0 0.0.0.0 192.168.1.2
+   Router0   Router(config)#ip route 0.0.0.0 0.0.0.0 192.168.2.2
+   Multilayer Switch0   R1(config)#int f0/4
+   Multilayer Switch0   R1(config-if)#no switchport 
+   Multilayer Switch0   R1(config-if)#ip address 192.168.2.2 255.255.255.0
+   Multilayer Switch0   R1(config-if)#no shut
+   Multilayer Switch0   R1(config-if)#ip route 0.0.0.0 0.0.0.0 192.168.2.1
+   Multilayer Switch1 p   R2(config)#int f0/4
+   Multilayer Switch1 p   R2(config-if)#no switchport 
+   Multilayer Switch1 p   R2(config-if)#ip address 192.1638.1.2 255.255.255.0
+   Multilayer Switch1 p   R2(config-if)#ip address 192.168.1.2 255.255.255.0
+   Multilayer Switch1 p   R2(config-if)#no shut
+   Multilayer Switch1 p   R2(config-if)#ip route 0.0.0.0 0.0.0.0 192.168.1.1
+   Multilayer Switch1 p   R2(config)#end
+   Multilayer Switch1 p   R2#sh ip route
+   Multilayer Switch0   R1(config)#end
+   Multilayer Switch0   R1#sh ip route
+   Router0   Router(config)#end
+   Router0   Router#sh ip route
+   Router0   Router#conf t
+   Router0   Router(config)#int serial 0/3/0
+   Router0   Router(config-if)#ip address 1.1.1.1 255.255.255.252
+   Router0   Router(config-if)#no shut
+   Router1   Router>en
+   Router1   Router#conf t
+   Router1   Router(config)#int serial 0/3/0
+   Router1   Router(config-if)#ip address 1.1.1.2 255.255.255.252
+   Router1   Router(config-if)#no shut
+   Router1   Router(config-if)#exit
+   Router1   Router(config)#hostname RT1
+   Router1   RT1(config)#int serial 0/2/0
+   Router1   RT1(config-if)#ip address 2.2.2.2 255.255.255.252
+   Router1   RT1(config-if)#no shut
+   Router1   RT1(config-if)#exit
+   Router1   RT1(config)#int serial 0/2/1
+   Router1   RT1(config-if)#ip address 4.4.4.2 255.255.255.252
+   Router1   RT1(config-if)#no shut
+   Router1   RT1(config-if)#exit
+   Router1   RT1(config)#int serial 0/3/1
+   Router1   RT1(config-if)#ip address 3.3.3.2 255.255.255.252
+   Router1   RT1(config-if)#no shut
+   Router3   Router>en
+   Router3   Router#conf t
+   Router3   Router(config)#int serial 0/1/1
+   Router3   Router(config-if)#ip address 2.2.2.1 255.255.255.252
+   Router3   Router(config-if)#no shut
+   Router3   Router(config-if)#exit
+   Router4   Router>en
+   Router4   Router#conf t
+   Router4   Router(config)#int serial 0/3/1
+   Router4   Router(config-if)#ip address 4.4.4.1 255.255.255.252
+   Router4   Router(config-if)#no shut
+   Router4   Router(config-if)#exit
+   Router4   Router(config)#int serial 0/3/0
+   Router4   Router(config-if)#ip address 5.5.5.1 255.255.255.252
+   Router4   Router(config-if)#no shut
+   Router3   Router(config)#int serial 0/1/0
+   Router3   Router(config-if)#ip address 5.5.5.2 255.255.255.252
+   Router3   Router(config-if)#no shut
+   Router0   Router>en
+   Router0   Router#conf t
+   Router0   Router(config)#int f0/1
+   Router0   Router(config-if)#shutdown 
+   Router0   Router(config-if)#no shutdown 
+   Router0   Router(config-if)#int f0/0
+   Router0   Router(config-if)#shutdown 
+   Router0   Router(config-if)#no shutdown 
+   Switch6   Switch>EN
+   Switch6   Switch#conf t
+   Switch6   Switch(config)#hostname A4
+   Switch6   A4(config)#VLAN 25
+   Switch6   A4(config-vlan)#name st25
+   Switch6   A4(config-vlan)#exit
+   Switch6   A4(config)#int range f0/1-2
+   Switch6   A4(config-if-range)#switchport mode access 
+   Switch6   A4(config-if-range)#switchport access vlan 25
+   Switch6   A4(config-if-range)#exit
+   Switch6   A4(config)#int range f0/3-4
+   Switch6   A4(config-if-range)#switchport port-security mac-address sticky 
+   Switch6   A4(config-if-range)#switchport port-security maximum 4
+   Switch6   A4(config-if-range)#switchport port-security violation shutdown 
+   Switch6   A4(config-if-range)#exit
+   Switch6   A4(config)#spanning-tree mode rapid-pvst 
+   Switch6   A4(config)#spanning-tree portfast bpduguard default 
+   Switch6   A4(config)#int range f0/3-4
+   Switch6   A4(config-if-range)#storm-control broadcast level 40
+   Switch6   A4(config-if-range)#exit
+   Switch6   A4(config)#int range f0/1-2
+   Switch6   A4(config-if-range)#switchport nonegotiate 
+   Switch7   Switch>en
+   Switch7   Switch#conf t
+   Switch7   Switch(config)#hostname A5
+   Switch7   A5(config)#VLAN 30
+   Switch7   A5(config-vlan)#NAme ST30
+   Switch7   A5(config-vlan)#exit
+   Switch7   A5(config)#int range f0/1-2
+   Switch7   A5(config-if-range)#switchport mode access 
+   Switch7   A5(config-if-range)#switchport access vlan 30
+   Switch7   A5(config-if-range)#exit
+   Switch7   A5(config)#int range f0/3-4
+   Switch7   A5(config-if-range)#switchport mode trunk 
+   Switch6   A4(config-if-range)#exit
+   Switch6   A4(config)#int range f0/3-4
+   Switch6   A4(config-if-range)#switchport mode trunk 
+   Switch7   A5(config-if-range)#exit
+   Switch7   A5(config)#int range f0/3-4
+   Switch7   A5(config-if-range)#switchport port-security mac-address sticky 
+   Switch7   A5(config-if-range)#switchport port-security maximum 4
+   Switch7   A5(config-if-range)#switchport port-security violation shutdown 
+   Switch7   A5(config-if-range)#exit
+   Switch7   A5(config)#spanning-tree mode rapid-pvst 
+   Switch7   A5(config)#spanning-tree portfast bpduguard default 
+   Switch7   A5(config)#int range f0/3-4
+   Switch7   A5(config-if-range)#storm-control broadcast level 40
+   Switch7   A5(config-if-range)#exit
+   Switch7   A5(config)#int range f0/1-2
+   Switch7   A5(config-if-range)#switchport nonegotiate 
+   Switch8   Switch>en
+   Switch8   Switch#conf t
+   Switch8   Switch(config)#hostname A6
+   Switch8   A6(config)#VLAN 35
+   Switch8   A6(config-vlan)#NAme st35
+   Switch8   A6(config-vlan)#exit
+   Switch8   A6(config)#end
+   Switch8   A6#sh vlan brief
+   Switch7   A5(config-if-range)#end
+   Switch7   A5#sh vlan brief
+   Switch7   A5#conf t
+   Switch7   A5(config)#name st30
+   Switch7   A5(config)#vlan 30
+   Switch7   A5(config-vlan)#name st30
+   Switch7   A5(config-vlan)#end
+   Switch7   A5#sh vlan brief
+   Switch6   A4(config-if-range)#end
+   Switch6   A4#sh vlan brief
+   Switch8   A6#conf t
+   Switch8   A6(config)#int f0/1-2
+   Switch8   A6(config)#int range f0/1-2
+   Switch8   A6(config-if-range)#switchport mode access 
+   Switch8   A6(config-if-range)#switchport access vlan 35
+   Switch8   A6(config-if-range)#exit
+   Switch8   A6(config)#int range f0/3-4
+   Switch8   A6(config-if-range)#switchport mode trunk 
+   Switch8   A6(config-if-range)#exit
+   Switch8   A6(config)#int range f0/3-4
+   Switch8   A6(config-if-range)#switchport port-security mac-address sticky 
+   Switch8   A6(config-if-range)#switchport port-security maximum 4
+   Switch8   A6(config-if-range)#switchport port-security violation shutdown 
+   Switch8   A6(config-if-range)#exit
+   Switch8   A6(config)#spanning-tree mode rapid-pvst 
+   Switch8   A6(config)#spanning-tree portfast bpduguard default 
+   Switch8   A6(config)#int range f0/3-4
+   Switch8   A6(config-if-range)#storm-control broadcast level 40
+   Switch8   A6(config-if-range)#exit 
+   Switch8   A6(config)#int range f0/1-2
+   Switch8   A6(config-if-range)#switchport nonegotiate 
+   Switch8   A6(config-if-range)#end
+   Switch8   A6#sh int trunk 
+   Multilayer Switch2   Switch>en
+   Multilayer Switch2   Switch#conf t
+   Multilayer Switch2   Switch(config)#hostname R3
+   Multilayer Switch2   R3(config)#vlan 25
+   Multilayer Switch2   R3(config-vlan)#name st25
+   Multilayer Switch2   R3(config-vlan)#vlan 30
+   Multilayer Switch2   R3(config-vlan)#name st30
+   Multilayer Switch2   R3(config-vlan)#vlan 35
+   Multilayer Switch2   R3(config-vlan)#name st35
+   Multilayer Switch2   R3(config-vlan)#end
+   Multilayer Switch2   R3#sh vlan brief
+   Multilayer Switch2   R3#conf t
+   Multilayer Switch2   R3(config)#int range f0/3-4
+   Multilayer Switch2   R3(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch2   R3(config-if-range)#switchport mode trunk 
+   Multilayer Switch2   R3(config-if-range)#end
+   Multilayer Switch2   R3#sh vlan brief
+   Multilayer Switch2   R3#sh int trunk 
+   Multilayer Switch2   R3#conf t
+   Multilayer Switch2   R3(config)#int vlan 25
+   Multilayer Switch2   R3(config-if)#ip address 192.168.25.99 255.255.255.0
+   Multilayer Switch2   R3(config-if)#no shut
+   Multilayer Switch2   R3(config-if)#standby 25 ip 192.168.25.1
+   Multilayer Switch2   R3(config-if)#standby 25 preempt 
+   Multilayer Switch2   R3(config-if)#exit
+   Multilayer Switch2   R3(config)#int vlan 30
+   Multilayer Switch2   R3(config-if)#ip address 192.168.30.99 255.255.255.0
+   Multilayer Switch2   R3(config-if)#no shut
+   Multilayer Switch2   R3(config-if)#standby 30 ip 192.168.30.1
+   Multilayer Switch2   R3(config-if)#standby 30 preempt 
+   Multilayer Switch2   R3(config-if)#exit
+   Multilayer Switch2   R3(config)#int vlan 35
+   Multilayer Switch2   R3(config-if)#ip address 192.168.35.99 255.255.255.0
+   Multilayer Switch2   R3(config-if)#no shut
+   Multilayer Switch2   R3(config-if)#standby 35 ip 192.168.35.1
+   Multilayer Switch2   R3(config-if)#standby 35 preempt 
+   Multilayer Switch2   R3(config-if)#exit
+   Multilayer Switch2   R3(config)#end
+   Multilayer Switch2   R3#sh standby fastEthernet 0/0
+   Multilayer Switch2   R3#conf t
+   Multilayer Switch2   R3(config)#ip dhcp excluded-address 192.168.25.1 192.168.25.99
+   Multilayer Switch2   R3(config)#ip dhcp excluded-address 192.168.30.1 192.168.30.99
+   Multilayer Switch2   R3(config)#ip dhcp excluded-address 192.168.35.1 192.168.35.99
+   Multilayer Switch2   R3(config)#ip dhcp pool st25
+   Multilayer Switch2   R3(dhcp-config)#network 192.168.25.0
+   Multilayer Switch2   R3(dhcp-config)#network 192.168.25.0 255.255.255.0
+   Multilayer Switch2   R3(dhcp-config)#default-router 192.168.25.1
+   Multilayer Switch2   R3(dhcp-config)#exit
+   Multilayer Switch2   R3(config)#ip dhcp pool st30
+   Multilayer Switch2   R3(dhcp-config)#network 192.168.30.0 255.255.255.0
+   Multilayer Switch2   R3(dhcp-config)#default-router 192.168.30.1
+   Multilayer Switch2   R3(dhcp-config)#exit
+   Multilayer Switch2   R3(config)#ip dhcp pool st35
+   Multilayer Switch2   R3(dhcp-config)#network 192.168.35.0 255.255.255.0
+   Multilayer Switch2   R3(dhcp-config)#default-router 192.168.35.1
+   Multilayer Switch2   R3(dhcp-config)#exit
+   Multilayer Switch2   R3(config)#int f0/4
+   Multilayer Switch2   R3(config-if)#no switchport 
+   Multilayer Switch2   R3(config-if)#ip address 192.168.4.1 255.255.255.0
+   Multilayer Switch2   R3(config-if)#no shut
+   Multilayer Switch2   R3(config-if)#ip route 0.0.0.0 0.0.0.0 192.168.4.2
+   Multilayer Switch2   R3(config)#ip routing 
+   Router2   Router>en
+   Router2   Router#conf t
+   Router2   Router(config)#int f0/1
+   Router2   Router(config-if)#ip address 192.168.4.2 255.255.255.0
+   Router2   Router(config-if)#no shut
+   Router2   Router(config-if)#exit
+   Router2   Router(config)#ip route 0.0.0.0 0.0.0.0 192.168.4.1
+   Router2   Router(config)#end
+   Router2   Router#sh ip route
+   Multilayer Switch2   R3(config)#end
+   Multilayer Switch2   R3#sh ip rou
+   Multilayer Switch3   Switch>en
+   Multilayer Switch3   Switch#conf t
+   Multilayer Switch3   Switch(config)#int range f0/1-3
+   Multilayer Switch3   Switch(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch3   Switch(config-if-range)#switchport mode trunk 
+   Multilayer Switch3   Switch(config-if-range)#exit
+   Multilayer Switch3   Switch(config)#vlan 25
+   Multilayer Switch3   Switch(config-vlan)#name st25
+   Multilayer Switch3   Switch(config-vlan)#vlan 30
+   Multilayer Switch3   Switch(config-vlan)#name st30
+   Multilayer Switch3   Switch(config-vlan)#vlan 35
+   Multilayer Switch3   Switch(config-vlan)#name st35
+   Multilayer Switch3   Switch(config-vlan)#exit
+   Multilayer Switch3   Switch(config)#int vlan 25
+   Multilayer Switch3   Switch(config-if)#ip address 192.168.25.99 255.255.255.0
+   Multilayer Switch3   Switch(config-if)#no shut
+   Multilayer Switch3   Switch(config-if)#standby 25 ip 192.168.25.1
+   Multilayer Switch3   Switch(config-if)#standby 25 priority 100
+   Multilayer Switch3   Switch(config-if)#standby 25 preempt 
+   Multilayer Switch3   Switch(config-if)#exit
+   Multilayer Switch3   Switch(config)#int vlan 30
+   Multilayer Switch3   Switch(config-if)#ip address 192.168.30.99 255.255.255.0
+   Multilayer Switch3   Switch(config-if)#no shut
+   Multilayer Switch3   Switch(config-if)#standby 30 ip 192.168.30.1
+   Multilayer Switch3   Switch(config-if)#standby 30 priority 100
+   Multilayer Switch3   Switch(config-if)#standby 30 preempt 
+   Multilayer Switch3   Switch(config-if)#exit
+   Multilayer Switch3   Switch(config)#int vlan 35
+   Multilayer Switch3   Switch(config-if)#ip address 192.168.35.99 255.255.255.0
+   Multilayer Switch3   Switch(config-if)#no shut
+   Multilayer Switch3   Switch(config-if)#standby 35 ip 192.168.35.1 
+   Multilayer Switch3   Switch(config-if)#standby 35 priority 100
+   Multilayer Switch3   Switch(config-if)#standby 35 preempt 
+   Multilayer Switch3   Switch(config-if)#exit
+   Multilayer Switch3   Switch(config)#ip dhcp excluded-address 192.168.25.1 192.168.25.99
+   Multilayer Switch3   Switch(config)#ip dhcp excluded-address 192.168.30.1 192.168.30.99
+   Multilayer Switch3   Switch(config)#ip dhcp excluded-address 192.168.35.1 192.168.35.99
+   Multilayer Switch3   Switch(config)#ip dhcp pool st25
+   Multilayer Switch3   Switch(dhcp-config)#network 192.168.25.0 255.255.255.0
+   Multilayer Switch3   Switch(dhcp-config)#default-router 192.168.25.1
+   Multilayer Switch3   Switch(dhcp-config)#exit
+   Multilayer Switch3   Switch(config)#ip dhcp pool st30
+   Multilayer Switch3   Switch(dhcp-config)#network 192.168.30.0 255.255.255.0
+   Multilayer Switch3   Switch(dhcp-config)#default-router 192.168.30.1
+   Multilayer Switch3   Switch(dhcp-config)#exit
+   Multilayer Switch3   Switch(config)#ip dhcp st35
+   Multilayer Switch3   Switch(config)#ip dhcp p st35
+   Multilayer Switch3   Switch(dhcp-config)#network 192.168.35.0  255.255.255.0
+   Multilayer Switch3   Switch(dhcp-config)#default-router 192.168.35.1
+   Multilayer Switch3   Switch(dhcp-config)#exit
+   Multilayer Switch3   Switch(config)#int f0/4
+   Multilayer Switch3   Switch(config-if)#no switchport 
+   Multilayer Switch3   Switch(config-if)#ip address 192.168.3.1 255.255.255.0
+   Multilayer Switch3   Switch(config-if)#no shut
+   Multilayer Switch3   Switch(config-if)#ip route 0.0.0.0 0.0.0.0 192.168.3.2
+   Multilayer Switch3   Switch(config)#ip routing 
+   Router2   Router#int f0/0
+   Router2   Router#conf t
+   Router2   Router(config)#ip route 0.0.0.0 0.0.0.0 192.168.3.2
+   Router2   Router(config)#int f0/0
+   Router2   Router(config-if)#ip address 192.168.3.2 255.255.255.0
+   Router2   Router(config-if)#no shut
+   Router2   Router(config-if)#ip route 0.0.0.0 0.0.0.0 192.168.3.1
+   Router2   Router(config)#end
+   Router2   Router#sh ip route
+   Router2   Router#conf t
+   Router2   Router(config)#no ip route 0.0.0.0 0.0.0.0 192.168.3.2
+   Router2   Router(config)#end
+   Router2   Router#sh ip route
+   Router2   Router#conf t
+   Router2   Router(config)#int serial 0/2/0
+   Router2   Router(config-if)#ip address 3.3.3.1 255.255.255.252
+   Router2   Router(config-if)#no shut
+   Router3   Router>en
+   Router3   Router#conf t
+   Router3   Router(config)#int f0/1
+   Router3   Router(config-if)#ip address 9.9.9.1 255.255.255.0
+   Router3   Router(config-if)#no shut
+   Router3   Router(config-if)#int f0/1
+   Router3   Router(config-if)#no ip address 9.9.9.1 255.255.255.0
+   Router3   Router(config-if)#exit
+   Router3   Router(config)#int f1/0
+   Router3   Router(config-if)#ip address 9.9.9.1 255.255.255.0
+   Router3   Router(config-if)#no shut
+   Router3   Router(config-if)#ip route 0.0.0.0 0.0.0.0 9.9.9.2
+   Multilayer Switch5   Switch>en
+   Multilayer Switch5   Switch#conf t
+   Multilayer Switch5   Switch(config)#int f0/5
+   Multilayer Switch5   Switch(config-if)#no switchport 
+   Multilayer Switch5   Switch(config-if)#ip address 9.9.9.2 255.255.255.0
+   Multilayer Switch5   Switch(config-if)#no shut
+   Multilayer Switch5   Switch(config-if)#ip route 0.0.0.0 0.0.0.0 9.9.9.1
+   Router4   Router>en
+   Router4   Router#conf t
+   Router4   Router(config)#int f1/0
+   Router4   Router(config-if)#ip address 8.8.8.1 255.255.255.0
+   Router4   Router(config-if)#no shut
+   Router4   Router(config-if)#ip route 0.0.0.0 0.0.0.0 8.8.8.2
+   Multilayer Switch4   Switch>en
+   Multilayer Switch4   Switch#conf t
+   Multilayer Switch4   Switch(config)#int f0/5
+   Multilayer Switch4   Switch(config-if)#no switchport 
+   Multilayer Switch4   Switch(config-if)#ip address 8.8.8.2 255.255.255.0
+   Multilayer Switch4   Switch(config-if)#no shut
+   Multilayer Switch4   Switch(config-if)#ip route 0.0.0.0 0.0.0.0 8.8.8.1
+   Multilayer Switch4   Switch(config)#end
+   Multilayer Switch4   Switch#sh ip route
+   Multilayer Switch4   Switch#conf t
+   Multilayer Switch4   Switch(config)#ip routing 
+   Multilayer Switch4   Switch(config)#end
+   Multilayer Switch4   Switch#sh ip route
+   Multilayer Switch5   Switch(config)#ip routing 
+   Multilayer Switch5   Switch(config)#end
+   Multilayer Switch5   Switch#sh ip route
+   Router3   Router(config)#int f0/0
+   Router3   Router(config-if)#ip address 6.6.6.1 255.255.255.0
+   Router3   Router(config-if)#no shut
+   Router3   Router(config-if)#ip route 0.0.0.0 0.0.0.0 6.6.6.2
+   Multilayer Switch4   Switch#conf t
+   Multilayer Switch4   Switch(config)#int f0/4
+   Multilayer Switch4   Switch(config-if)#no switchport 
+   Multilayer Switch4   Switch(config-if)#ip address 6.6.6.2 255.255.255.0
+   Multilayer Switch4   Switch(config-if)#no shut
+   Multilayer Switch4   Switch(config-if)#ip route 0.0.0.0 0.0.0.0 6.6.6.1
+   Multilayer Switch4   Switch(config)#end
+   Multilayer Switch5   Switch#int f0/4
+   Multilayer Switch5   Switch#conf t
+   Multilayer Switch5   Switch(config)#int f0/4
+   Multilayer Switch5   Switch(config-if)#no switchport 
+   Multilayer Switch5   Switch(config-if)#ip address 7.7.7.2 255.255.255.0
+   Multilayer Switch5   Switch(config-if)#no shut
+   Multilayer Switch5   Switch(config-if)#ip route 0.0.0.0 0.0.0.0 7.7.7.1
+   Router4   Router(config)#int f0/0
+   Router4   Router(config-if)#ip address 7.7.7.1 255.255.255.0
+   Router4   Router(config-if)#no shut
+   Router4   Router(config-if)#ip route 0.0.0.0 0.0.0.0 7.7.7.2
+   Router4   Router(config)#end
+   Router4   Router#sh ip route
+   Multilayer Switch5   Switch(config)#end
+   Multilayer Switch5   Switch#sh ip route
+   Router3   Router(config)#end
+   Router3   Router#sh ip route
+   Multilayer Switch4   Switch#sh ip route
+   Multilayer Switch4   Switch#conf t
+   Multilayer Switch4   Switch(config)#vlan 40
+   Multilayer Switch4   Switch(config-vlan)#name st40
+   Multilayer Switch4   Switch(config-vlan)#vlan 45
+   Multilayer Switch4   Switch(config-vlan)#name st45
+   Multilayer Switch4   Switch(config-vlan)#vlan 50
+   Multilayer Switch4   Switch(config-vlan)#name st50
+   Multilayer Switch4   Switch(config-vlan)#exit
+   Multilayer Switch4   Switch(config)#int range f0/1-3
+   Multilayer Switch4   Switch(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch4   Switch(config-if-range)#switchport mode trunk 
+   Multilayer Switch4   Switch(config-if-range)#exit
+   Multilayer Switch4   Switch(config)#int vlan 40
+   Multilayer Switch4   Switch(config-if)#ip address 192.168.40.99 255.255.255.0
+   Multilayer Switch4   Switch(config-if)#no shut
+   Multilayer Switch4   Switch(config-if)#standby 40 ip 192.168.40.1
+   Multilayer Switch4   Switch(config-if)#standby 40 preempt 
+   Multilayer Switch4   Switch(config-if)#exit
+   Multilayer Switch4   Switch(config)#int vlan 45
+   Multilayer Switch4   Switch(config-if)#ip address 192.168.45.99 255.255.255.0
+   Multilayer Switch4   Switch(config-if)#no shut
+   Multilayer Switch4   Switch(config-if)#standby 45 ip 192.168.45.1
+   Multilayer Switch4   Switch(config-if)#standby 45 preempt 
+   Multilayer Switch4   Switch(config-if)#exit
+   Multilayer Switch4   Switch(config)#int vlan 50
+   Multilayer Switch4   Switch(config-if)#ip address 192.168.50.99 255.255.255.0
+   Multilayer Switch4   Switch(config-if)#no shut
+   Multilayer Switch4   Switch(config-if)#standby 50 ip 192.168.50.1
+   Multilayer Switch4   Switch(config-if)#standby 50 preempt 
+   Multilayer Switch4   Switch(config-if)#exit
+   Multilayer Switch4   Switch(config)#ip dhcp excluded-address 192.168.40.1 192.168.40.99
+   Multilayer Switch4   Switch(config)#ip dhcp excluded-address 192.168.45.1 192.168.45.99
+   Multilayer Switch4   Switch(config)#ip dhcp excluded-address 192.168.50.1 192.168.50.99
+   Multilayer Switch4   Switch(config)#ip dhcp pool st40
+   Multilayer Switch4   Switch(dhcp-config)#network 192.168.40.0 255.255.255.0
+   Multilayer Switch4   Switch(dhcp-config)#default-router 192.168.40.1 
+   Multilayer Switch4   Switch(dhcp-config)#exit
+   Multilayer Switch4   Switch(config)#ip dhcp pool st45
+   Multilayer Switch4   Switch(dhcp-config)#network 192.168.40.0 255.255.255.0
+   Multilayer Switch4   Switch(dhcp-config)#default-router 192.168.40.1
+   Multilayer Switch4   Switch(dhcp-config)#exit
+   Multilayer Switch4   Switch(config)#ip dhcp pool 50
+   Multilayer Switch4   Switch(dhcp-config)#network 192.168.50.0 255.255.255.0
+   Multilayer Switch4   Switch(dhcp-config)#default-router 192.168.50.1
+   Multilayer Switch5   Switch#conf t
+   Multilayer Switch5   Switch(config)#host CORE2
+   Multilayer Switch5   CORE2(config)#vlan 40
+   Multilayer Switch5   CORE2(config-vlan)#name st40
+   Multilayer Switch5   CORE2(config-vlan)#vlan 45
+   Multilayer Switch5   CORE2(config-vlan)#name st45
+   Multilayer Switch5   CORE2(config-vlan)#vlan 50
+   Multilayer Switch5   CORE2(config-vlan)#name st50
+   Multilayer Switch5   CORE2(config-vlan)#exit
+   Multilayer Switch5   CORE2(config)#interface range fastEthernet 0/1-3
+   Multilayer Switch5   CORE2(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch5   CORE2(config-if-range)#switchport mode trunk 
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#interface vlan 40
+   Multilayer Switch5   CORE2(config-if)#ip address 192.168.40.99 255.255.255.0
+   Multilayer Switch5   CORE2(config-if)#no shut
+   Multilayer Switch5   CORE2(config-if)#standby 40 ip 192.168.40.1
+   Multilayer Switch5   CORE2(config-if)#standby 40 priority 100
+   Multilayer Switch5   CORE2(config-if)#standby 40 pree
+   Multilayer Switch5   CORE2(config-if)#standby 40 preempt 
+   Multilayer Switch5   CORE2(config-if)#exit
+   Multilayer Switch5   CORE2(config)#interface vlan 45
+   Multilayer Switch5   CORE2(config-if)#ip address 192.168.45.99 255.255.255.0
+   Multilayer Switch5   CORE2(config-if)#no shut
+   Multilayer Switch5   CORE2(config-if)#standby 45 ip 192.168.45.1
+   Multilayer Switch5   CORE2(config-if)#standby 45 priority 100
+   Multilayer Switch5   CORE2(config-if)#standby 45 preempt 
+   Multilayer Switch5   CORE2(config-if)#exit
+   Multilayer Switch5   CORE2(config)#interface vlan 50
+   Multilayer Switch5   CORE2(config-if)#ip address 192.168.50.99 255.255.255.0
+   Multilayer Switch5   CORE2(config-if)#no shutdown 
+   Multilayer Switch5   CORE2(config-if)#standby 50 ip 192.168.50.1
+   Multilayer Switch5   CORE2(config-if)#standby 50 priority 100
+   Multilayer Switch5   CORE2(config-if)#standby 50 preempt 
+   Multilayer Switch5   CORE2(config-if)#exit
+   Multilayer Switch5   CORE2(config)#ip dhcp excluded-address 192.168.40.1 192.168.40.99
+   Multilayer Switch5   CORE2(config)#ip dhcp excluded-address 192.168.45.1 192.168.45.99
+   Multilayer Switch5   CORE2(config)#ip dhcp excluded-address 192.168.50.1 192.168.50.99
+   Multilayer Switch5   CORE2(config)#ip dhcp pool st40
+   Multilayer Switch5   CORE2(dhcp-config)#network 192.168.40.0 255.255.255.0
+   Multilayer Switch5   CORE2(dhcp-config)#default-router 192.168.40.1
+   Multilayer Switch5   CORE2(dhcp-config)#exit
+   Multilayer Switch5   CORE2(config)#ip dhcp pool st45
+   Multilayer Switch5   CORE2(dhcp-config)#network 192.168.45.
+   Multilayer Switch5   CORE2(dhcp-config)#network 192.168.45.0 255.255.255.0
+   Multilayer Switch5   CORE2(dhcp-config)#default-router 192.168.40.1
+   Multilayer Switch5   CORE2(dhcp-config)#exit
+   Multilayer Switch5   CORE2(config)#ip dhcp pool st50
+   Multilayer Switch5   CORE2(dhcp-config)#network 192.168.50.0 255.255.255.0
+   Multilayer Switch5   CORE2(dhcp-config)#default-router 192.168.50.1
+   Multilayer Switch5   CORE2(dhcp-config)#exit
+   Multilayer Switch4   Switch(dhcp-config)#exit
+   Multilayer Switch4   Switch(config)#interface gigabitEthernet 0/1-2
+   Multilayer Switch4   Switch(config)#interface range gigabitEthernet 0/1-2
+   Multilayer Switch4   Switch(config-if-range)#shutdown 
+   Multilayer Switch4   Switch(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch4   Switch(config-if-range)#switchport mode trunk 
+   Multilayer Switch4   Switch(config-if-range)#channel-group 1 mode ?
+   Multilayer Switch4   Switch(config-if-range)#channel-group 1 mode active 
+   Multilayer Switch4   Switch(config-if-range)#no shutdown 
+   Multilayer Switch4   Switch(config-if-range)#exit
+   Multilayer Switch4   Switch(config)#interface port-channel 1
+   Multilayer Switch4   Switch(config-if)#switchport trunk encapsulation dot1q 
+   Multilayer Switch4   Switch(config-if)#switchport mode trunk 
+   Multilayer Switch4   Switch(config-if)#exit
+   Multilayer Switch5   CORE2(config)#interface range gigabitEthernet 0/1-2
+   Multilayer Switch5   CORE2(config-if-range)#shutdown 
+   Multilayer Switch5   CORE2(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch5   CORE2(config-if-range)#switchport mode trunk 
+   Multilayer Switch5   CORE2(config-if-range)#channel-group 1 mode active 
+   Multilayer Switch5   CORE2(config-if-range)#no shutdown 
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#interface port-channel 1
+   Multilayer Switch5   CORE2(config-if)#switchport trunk encapsulation dot1q 
+   Multilayer Switch5   CORE2(config-if)#switchport mode trunk 
+   Multilayer Switch5   CORE2(config-if)#end
+   Multilayer Switch5   CORE2#sh etherchannel summary 
+   Multilayer Switch4   Switch(config)#end
+   Multilayer Switch4   Switch#sh etherchannel summary 
+   Multilayer Switch5   CORE2#end
+   Switch9   Switch>en
+   Switch9   Switch#conf t
+   Switch9   Switch(config)#hostname 
+   Switch9   Switch(config)#hostname A7
+   Switch9   A7(config)#vlan 40
+   Switch9   A7(config-vlan)#name st40
+   Switch9   A7(config-vlan)#int range f0/1-2
+   Switch9   A7(config-if-range)#switchport mode access 
+   Switch9   A7(config-if-range)#switchport access vlan 40
+   Switch9   A7(config-if-range)#exit
+   Switch9   A7(config)#interface range f0/3-4
+   Switch9   A7(config-if-range)#switchport mode trunk 
+   Switch9   A7(config-if-range)#exit
+   Switch9   A7(config)#interface range f0/3-4
+   Switch9   A7(config-if-range)#switchport port-security mac-address sticky 
+   Switch9   A7(config-if-range)#switchport port-security maximum 4
+   Switch9   A7(config-if-range)#switchport port-security violation shutdown 
+   Switch9   A7(config-if-range)#exit
+   Switch9   A7(config)#spanning-tree mode rapid-pvst 
+   Switch9   A7(config)#spanning-tree portfast bpduguard default 
+   Switch9   A7(config)#interface range f0/3-4
+   Switch9   A7(config-if-range)#storm-control broadcast level 40
+   Switch9   A7(config-if-range)#exit
+   Switch9   A7(config)#interface range f0/1-2
+   Switch9   A7(config-if-range)#switchport nonegotiate 
+   Switch9   A7(config-if-range)#end
+   Switch9   A7#sh vlan brief
+   Switch5   Switch>en
+   Switch5   Switch#conf t
+   Switch5   Switch(config)#hostname A9
+   Switch5   A9(config)#vlan 50
+   Switch5   A9(config-vlan)#name st50
+   Switch5   A9(config-vlan)#exit
+   Switch5   A9(config)#int range f0/1-2
+   Switch5   A9(config-if-range)#switchport mode access 
+   Switch5   A9(config-if-range)#switchport access vlan 50
+   Switch5   A9(config-if-range)#exit
+   Switch5   A9(config)#int range f0/3-4
+   Switch5   A9(config-if-range)#switchport mode trunk 
+   Switch5   A9(config-if-range)#exit
+   Switch5   A9(config)#int range f0/3-4
+   Switch5   A9(config-if-range)#switchport port-security mac-address sticky 
+   Switch5   A9(config-if-range)#switchport port-security maximum 4
+   Switch5   A9(config-if-range)#switchport port-security violation shutdown 
+   Switch5   A9(config-if-range)#exit
+   Switch5   A9(config)#spanning-tree mode rapid-pvst 
+   Switch5   A9(config)#spanning-tree portfast bpduguard default 
+   Switch5   A9(config)#int range f0/3-4
+   Switch5   A9(config-if-range)#storm-control broadcast level 40
+   Switch5   A9(config-if-range)#exit
+   Switch5   A9(config)#int f0/1-2
+   Switch5   A9(config)#int range f0/1-2
+   Switch5   A9(config-if-range)#switchport nonegotiate 
+   Switch4   Switch>en
+   Switch4   Switch#conf t
+   Switch4   Switch(config)#hostname A8
+   Switch4   A8(config)#vlan 45
+   Switch4   A8(config-vlan)#name st45
+   Switch4   A8(config-vlan)#exit
+   Switch4   A8(config)#int range f0/1-2
+   Switch4   A8(config-if-range)#switchport mode access 
+   Switch4   A8(config-if-range)#switchport access vlan 45
+   Switch4   A8(config-if-range)#exit
+   Switch4   A8(config)#int range f0/3-4
+   Switch4   A8(config-if-range)#switchport mode trunk 
+   Switch4   A8(config-if-range)#exit
+   Switch4   A8(config)#int rane f0/3-4
+   Switch4   A8(config)#int range f0/3-4
+   Switch4   A8(config-if-range)#switchport port-security mac-address sticky 
+   Switch4   A8(config-if-range)#switchport port-security maximum 4
+   Switch4   A8(config-if-range)#switchport port-security violation shutdown 
+   Switch4   A8(config-if-range)#exit
+   Switch4   A8(config)#spanning-tree mode rapid-pvst 
+   Switch4   A8(config)#spanning-tree portfast bpduguard default 
+   Switch4   A8(config)#intrange  f0/3-4
+   Switch4   A8(config)#int range  f0/3-4
+   Switch4   A8(config-if-range)#storm-control broadcast level 40
+   Switch4   A8(config-if-range)#exit
+   Switch4   A8(config)#int range f0/1-2
+   Switch4   A8(config-if-range)#switchport nonegotiate 
+   Multilayer Switch5   CORE2#conf t
+   Multilayer Switch5   CORE2(config)#int range f0/1-3
+   Multilayer Switch5   CORE2(config-if-range)#switchport trunk encapsulation dot1q 
+   Multilayer Switch5   CORE2(config-if-range)#switchport mode trunk 
+   Multilayer Switch4   Switch>en
+   Multilayer Switch4   Switch#int f0/5
+   Multilayer Switch4   Switch#conf t
+   Multilayer Switch4   Switch(config)#int f0/5
+   Multilayer Switch4   Switch(config-if)#shutdown 
+   Multilayer Switch4   Switch(config-if)#int f0/3
+   Multilayer Switch4   Switch(config-if)#shutdown 
+   Multilayer Switch4   Switch(config-if)#int f0/3
+   Multilayer Switch4   Switch(config-if)#no shutdown 
+   Multilayer Switch4   Switch(config-if)#int f0/5
+   Multilayer Switch4   Switch(config-if)#no shutdown 
+   Multilayer Switch4   Switch>en
+   Multilayer Switch4   Switch#conf t
+   Multilayer Switch4   Switch(config)#int f0/2
+   Multilayer Switch4   Switch(config-if)#shut
+   Multilayer Switch4   Switch(config-if)#int f0/2
+   Multilayer Switch4   Switch(config-if)#shut
+   Multilayer Switch4   Switch(config-if)#int f0/2
+   Multilayer Switch4   Switch(config-if)#no shut
+   Router1   RT1>en
+   Router1   RT1#conf t
+   Router1   RT1(config)#int serial 0/3/0
+   Router1   RT1(config-if)#ip nat inside 
+   Router1   RT1(config-if)#exit 
+   Router1   RT1(config)#int serial 0/2/0
+   Router1   RT1(config-if)#ip nat inside 
+   Router1   RT1(config-if)#exit
+   Router1   RT1(config)#int serial 0/2/1
+   Router1   RT1(config-if)#ip nat inside 
+   Router1   RT1(config-if)#exit
+   Router1   RT1(config)#int serial 0/3/1
+   Router1   RT1(config-if)#ip nat inside 
+   Router1   RT1(config-if)#exit
+   Router1   RT1(config)#int f0/0
+   Router1   RT1(config-if)#ip nat outside 
+   Router5   Router>en
+   Router5   Router#conf t
+   Router5   Router(config)#int f0/0
+   Router5   Router(config-if)#ip address 8.8.8.1 255.255.255.0
+   Router5   Router(config-if)#no shut
+   Router1   RT1(config-if)#exit
+   Router1   RT1(config)#int f0/0
+   Router1   RT1(config-if)#ip address 8.8.8.2 255.255.255.0
+   Router1   RT1(config-if)#no shut
+   Router1   RT1(config-if)#exit
+   Router1   RT1(config)#access-list 1 permit any 
+   Router1   RT1(config)#ip nat inside source list 1 interface fastEthernet 0/0 overload 
+   Router1   RT1>en
+   Router1   RT1#conf t
+   Router1   RT1(config)#int f0/0
+   Router1   RT1(config-if)#no ip address 8.8.8.2 255.255.255.0
+   Router1   RT1(config-if)#int f0/0
+   Router1   RT1(config-if)#ip add 15.15.15.1 255.255.255.252
+   Router5   Router>en
+   Router5   Router#conf t
+   Router5   Router(config)#int f0/0
+   Router5   Router(config-if)#no ip address 8.8.8.1 255.255.255.0
+   Router5   Router(config-if)#exit
+   Router5   Router(config)#int f0/0
+   Router5   Router(config-if)#ip address 15.15.15.2 255.255.255.252
+   Router1   RT1>EN
+   Router1   RT1#CONF T
+   Router1   RT1(config)#end
+   Router1   RT1#sh ip route
+   Router1   RT1#conf t
+   Router1   RT1(config)#router ospf 1
+   Router1   RT1(config-router)#router-id 2.2.2.2
+   Router1   RT1(config-router)#network 1.1.1.0 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 1.1.1.2 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 2.2.2.2 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 2.2.2.0 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 3.3.3.0 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 3.3.3.2 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 4.4.4.0 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 4.4.4.2 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 15.15.15.0 0.0.0.3 area 0
+   Router1   RT1(config-router)#network 15.15.15.1 0.0.0.3 area 0
+   Router5   Router>en
+   Router5   Router#sh ip route
+   Router5   Router#conf t
+   Router5   Router(config)#router ospf 1
+   Router5   Router(config-router)#router-id 3.3.3.3
+   Router5   Router(config-router)#network 15.15.15.0 0.0.0.3 area 0
+   Router5   Router(config-router)#network 15.15.15.2 0.0.0.3 area 0
+   Multilayer Switch0   R1>en
+   Multilayer Switch0   R1#conf t
+   Multilayer Switch0   R1(config)#router ospf 1
+   Multilayer Switch0   R1(config-router)#passive-interface f0/1
+   Multilayer Switch0   R1(config-router)#passive-interface f0/2
+   Multilayer Switch0   R1(config-router)#passive-interface f0/3
+   Multilayer Switch0   R1(config-router)#exit
+   Multilayer Switch0   R1(config)#end
+   Multilayer Switch0   R1#sh ip route
+   Multilayer Switch0   R1#conf t
+   Multilayer Switch0   R1(config)#router ospf 1
+   Multilayer Switch0   R1(config-router)#router-id 1.1.1.1
+   Multilayer Switch0   R1(config-router)#network 192.168.2.0 0.0.0.255 area 1
+   Multilayer Switch0   R1(config-router)#network 192.168.5.0 0.0.0.255 area 1
+   Multilayer Switch0   R1(config-router)#network 192.168.10.0 0.0.0.255 area 1
+   Multilayer Switch0   R1(config-router)#network 192.168.20.0 0.0.0.255 area 1
+   Multilayer Switch1 p   R2>en
+   Multilayer Switch1 p   R2#conf t
+   Multilayer Switch1 p   R2(config)#router ospf 1
+   Multilayer Switch1 p   R2(config-router)#passive-interface f0/1
+   Multilayer Switch1 p   R2(config-router)#passive-interface f0/2
+   Multilayer Switch1 p   R2(config-router)#passive-interface f0/3
+   Multilayer Switch1 p   R2(config-router)#exit
+   Multilayer Switch1 p   R2(config)#end
+   Multilayer Switch1 p   R2#sh ip route
+   Multilayer Switch1 p   R2#conf t
+   Multilayer Switch1 p   R2(config)#router ospf 1
+   Multilayer Switch1 p   R2(config-router)#router-id 4.4.4.4
+   Multilayer Switch1 p   R2(config-router)#network 192.168.1.0 0.0.0.255 area 1
+   Multilayer Switch1 p   R2(config-router)#network 192.168.5.0 0.0.0.255 area 1
+   Multilayer Switch1 p   R2(config-router)#network 192.168.10.0 0.0.0.255 area 1
+   Multilayer Switch1 p   R2(config-router)#network 192.168.20.0 0.0.0.255 area 1
+   Multilayer Switch1 p   R2(config-router)#exit
+   Router0   Router>en
+   Router0   Router#conf t
+   Router0   Router(config)#router ospf 1
+   Router0   Router(config-router)#router-id 5.5.5.5
+   Router0   Router(config-router)#exit
+   Router0   Router(config)#exit
+   Router0   Router#sh ip rou
+   Router0   Router#conf t
+   Router0   Router(config)#router ospf 1
+   Router0   Router(config-router)#router-id 5.5.5.5
+   Router0   Router(config-router)#network 1.1.1.0 0.0.0.3 area 0
+   Router0   Router(config-router)#network 1.1.1.1 0.0.0.3 area 0
+   Router0   Router(config-router)#network 192.168.1.0 0.0.0.255 area 1
+   Router0   Router(config-router)#network 192.168.1.1 0.0.0.255 area 1
+   Router0   Router(config-router)#network 192.168.2.1 0.0.0.255 area 1
+   Router0   Router(config-router)#network 192.168.2.0 0.0.0.255 area 1
+   Multilayer Switch2   R3>en
+   Multilayer Switch2   R3#conf t
+   Multilayer Switch2   R3(config)#router ospf 1
+   Multilayer Switch2   R3(config-router)#passive-interface f0/1
+   Multilayer Switch2   R3(config-router)#passive-interface f0/2
+   Multilayer Switch2   R3(config-router)#passive-interface f0/3
+   Multilayer Switch2   R3(config-router)#end
+   Multilayer Switch2   R3#sh ip route
+   Multilayer Switch2   R3#conf t
+   Multilayer Switch2   R3(config)#router ospf 1
+   Multilayer Switch2   R3(config-router)#router-id 6.6.6.6
+   Multilayer Switch2   R3(config-router)#network 192.168.4.0 0.0.0.255 area 2
+   Multilayer Switch2   R3(config-router)#network 192.168.25.0 0.0.0.255 area 2
+   Multilayer Switch2   R3(config-router)#network 192.168.30.0 0.0.0.255 area 2
+   Multilayer Switch2   R3(config-router)#network 192.168.35.0 0.0.0.255 area 2
+   Multilayer Switch3   Switch>en
+   Multilayer Switch3   Switch#conf t
+   Multilayer Switch3   Switch(config)#router ospf 1
+   Multilayer Switch3   Switch(config-router)#passive-interface f0/1
+   Multilayer Switch3   Switch(config-router)#passive-interface f0/2
+   Multilayer Switch3   Switch(config-router)#passive-interface f0/3
+   Multilayer Switch3   Switch(config-router)#end
+   Multilayer Switch3   Switch#sh ip route
+   Multilayer Switch3   Switch#conf t
+   Multilayer Switch3   Switch(config)#router ospf 1
+   Multilayer Switch3   Switch(config-router)#router-id 7.7.7.7
+   Multilayer Switch3   Switch(config-router)#network 192.168.3.0 0.0.0.255 area 2
+   Multilayer Switch3   Switch(config-router)#network 192.168.25.0 0.0.0.255 area 2
+   Multilayer Switch3   Switch(config-router)#network 192.168.30.0 0.0.0.255 area 2
+   Multilayer Switch3   Switch(config-router)#network 192.168.35.0 0.0.0.255 area 2
+   Router2   Router>en
+   Router2   Router#conf t
+   Router2   Router(config)#router ospf 1
+   Router2   Router(config-router)#end
+   Router2   Router#sh ip rou
+   Router2   Router#conf t
+   Router2   Router(config)#router ospf 1
+   Router2   Router(config-router)#router-id 8.8.8.8
+   Router2   Router(config-router)#network 3.3.3.0 0.0.0.3 area 0
+   Router2   Router(config-router)#network 3.3.3.1 0.0.0.3 area 0
+   Router2   Router(config-router)#network 192.168.3.0 0.0.0.255 area 2
+   Router2   Router(config-router)#network 192.168.3.2 0.0.0.255 area 2
+   Router2   Router(config-router)#network 192.168.4.2 0.0.0.255 area 2
+   Router2   Router(config-router)#network 192.168.4.0 0.0.0.255 area 2
+   Multilayer Switch1 p   R2(config)#do sh ip route
+   Multilayer Switch0   R1(config-router)#do sh ip route
+   Multilayer Switch3   Switch(config-router)#do sh ip route
+   Multilayer Switch2   R3(config-router)#do sh ip route
+   Multilayer Switch1 p   R2(config)#do sh ip route
+   Multilayer Switch0   R1(config-router)#do sh ip route
+   Router3   Router>en
+   Router3   Router#conf t
+   Router3   Router(config)#hostname router1
+   Router4   Router>en
+   Router4   Router#conf t
+   Router4   Router(config)#hostname router 1
+   Router4   Router(config)#hostname router2
+   Router1   RT1(config-router)#do sh ip route
+   Router3   router1(config)#conf t
+   Router3   router1(config)#end
+   Router3   router1#sh ip route
+   Router3   router1#conf t
+   Router3   router1(config)#router ospf 1
+   Router3   router1(config-router)#router-id 10.10.10.10
+   Router3   router1(config-router)#network 2.2.2.0 0.0.0.3 area 0
+   Router3   router1(config-router)#network 2.2.2.1 0.0.0.3 area 0
+   Router3   router1(config-router)#network 5.5.5.0 0.0.0.3 area 0
+   Router3   router1(config-router)#network 5.5.5.2 0.0.0.3 area 0
+   Router3   router1(config-router)#network 6.6.6.0 0.0.0.255 area 3
+   Router3   router1(config-router)#network 6.6.6.1 0.0.0.255 area 3
+   Router3   router1(config-router)#network 9.9.9.1 0.0.0.255 area 3
+   Router3   router1(config-router)#network 9.9.9.0 0.0.0.255 area 3
+   Router4   router2(config)#router ospf 1
+   Router4   router2(config-router)#router-id 9.9.9.9
+   Router4   router2(config-router)#end
+   Router4   router2#sh ip route
+   Router4   router2#conf t
+   Router4   router2(config)#router ospf 1
+   Router4   router2(config-router)#router-id 9.9.9.9
+   Router4   router2(config-router)#network 4.4.4.0 0.0.0.3 area 0
+   Router4   router2(config-router)#network 4.4.4.1 0.0.0.3 area 0
+   Router4   router2(config-router)#network 5.5.5.0 0.0.0.3 area 0
+   Router4   router2(config-router)#network 5.5.5.1 0.0.0.3 area 0
+   Router4   router2(config-router)#network 5.5.5.1 0.0.0.3 area 0
+   Router4   router2(config-router)#network 7.7.7.0 0.0.0.255 area 3
+   Router4   router2(config-router)#network 7.7.7.1 0.0.0.255 area 3
+   Router4   router2(config-router)#network 8.8.8.1 0.0.0.255 area 3
+   Router4   router2(config-router)#network 8.8.8.0 0.0.0.255 area 3
+   Router3   router1(config-router)#do sh route
+   Router3   router1(config-router)#do sh ip route
+   Multilayer Switch4   Switch>en
+   Multilayer Switch4   Switch#conf t
+   Multilayer Switch4   Switch(config)#hostname CORE1
+   Multilayer Switch4   CORE1(config)#ROUter ospf 1
+   Multilayer Switch4   CORE1(config-router)#passive-interface f0/1
+   Multilayer Switch4   CORE1(config-router)#passive-interface f0/2
+   Multilayer Switch4   CORE1(config-router)#passive-interface f0/3
+   Multilayer Switch4   CORE1(config-router)#exit
+   Multilayer Switch4   CORE1(config)#router ospf 1
+   Multilayer Switch4   CORE1(config-router)#end
+   Multilayer Switch4   CORE1#sh ip route
+   Multilayer Switch4   CORE1#conf t
+   Multilayer Switch4   CORE1(config)#router ospf 1
+   Multilayer Switch4   CORE1(config-router)#router-id 11.11.11.11
+   Multilayer Switch4   CORE1(config-router)#network 6.6.6.0 0.0.0.255 area 3
+   Multilayer Switch4   CORE1(config-router)#network 8.8.8.0 0.0.0.255 area 3
+   Multilayer Switch4   CORE1(config-router)#network 192.168.40.0 0.0.0.255 area 3
+   Multilayer Switch4   CORE1(config-router)#network 192.168.45.0 0.0.0.255 area 3
+   Multilayer Switch4   CORE1(config-router)#network 192.168.5.0 0.0.0.255 area 30
+   Multilayer Switch4   CORE1(config-router)#network 192.168.50.0 0.0.0.255 area 30
+   Multilayer Switch5   CORE2>en
+   Multilayer Switch5   CORE2#conf t
+   Multilayer Switch5   CORE2(config)#router ospf 1
+   Multilayer Switch5   CORE2(config-router)#passive-interface f0/1
+   Multilayer Switch5   CORE2(config-router)#passive-interface f0/2
+   Multilayer Switch5   CORE2(config-router)#passive-interface f0/3
+   Multilayer Switch5   CORE2(config-router)#exit
+   Multilayer Switch5   CORE2(config)#end
+   Multilayer Switch5   CORE2#sh ip route
+   Multilayer Switch5   CORE2#conf t
+   Multilayer Switch5   CORE2(config)#router ospf 1
+   Multilayer Switch5   CORE2(config-router)#router-id 12.12.12.12
+   Multilayer Switch5   CORE2(config-router)#network 7.7.7.0 0.0.0.255 area 3
+   Multilayer Switch5   CORE2(config-router)#network 9.9.9.0 0.0.0.255 area 3
+   Multilayer Switch5   CORE2(config-router)#network 192.168.40.0 0.0.0.255 area 3
+   Multilayer Switch5   CORE2(config-router)#network 192.168.45.0 0.0.0.255 area 3
+   Multilayer Switch5   CORE2(config-router)#network 192.168.50.0 0.0.0.255 area 3
+   Multilayer Switch5   CORE2(config-router)#do sh ip route
+   Multilayer Switch4   CORE1(config-router)#exit
+   Multilayer Switch4   CORE1(config)#int f0/4
+   Multilayer Switch4   CORE1(config-if)#shutdown 
+   Multilayer Switch4   CORE1(config-if)#int f0/3
+   Multilayer Switch4   CORE1(config-if)#shutdown 
+   Multilayer Switch4   CORE1(config-if)#end
+   Multilayer Switch4   CORE1#sh ip route
+   Router5   Router>en
+   Router5   Router#conf t
+   Router5   Router(config)#int f0/1
+   Router5   Router(config-if)#ip address 200.172.3.1 255.255.255.0
+   Router5   Router(config-if)#no shut
+   Router5   Router(config-if)#exit
+   Router5   Router(config)#router ospf 1
+   Router5   Router(config-router)#router-id 3.3.3.3
+   Router5   Router(config-router)#end
+   Router5   Router#sh ip route
+   Router5   Router#conf t
+   Router5   Router(config)#router ospf 1
+   Router5   Router(config-router)#router-id 3.3.3.3
+   Router5   Router(config-router)#network 200.172.3.0 0.0.0.255 area 0
+   Router5   Router(config-router)#network 200.172.3.1 0.0.0.255 area 0
+   Router1   RT1(config-router)#exit
+   Router1   RT1(config)#end
+   Router1   RT1#sh ip route
+   Router4   router2(config-router)#end
+   Router4   router2#sh ip route
+   Multilayer Switch1 p   R2(config)#int f0/1
+   Multilayer Switch1 p   R2(config-if)#shutdown 
+   Multilayer Switch1 p   R2(config-if)#int f0/4
+   Multilayer Switch1 p   R2(config-if)#shutdown 
+   Multilayer Switch1 p   R2(config-if)#int f0/4
+   Multilayer Switch1 p   R2(config-if)#no shutdown 
+   Multilayer Switch1 p   R2(config-if)#int f0/1
+   Multilayer Switch1 p   R2(config-if)#no sh
+   Multilayer Switch4   CORE1#conf t
+   Multilayer Switch4   CORE1(config)#int f0/3
+   Multilayer Switch4   CORE1(config-if)#no sh
+   Multilayer Switch4   CORE1(config-if)#int f0/4
+   Multilayer Switch4   CORE1(config-if)#no sh
+   Router3   router1>en
+   Router3   router1#sh run
+   Router3   router1#show ip route 
+   Router3   router1#show ip ospf 
+   Multilayer Switch5   CORE2>en
+   Multilayer Switch5   CORE2#sh standby ?
+   Multilayer Switch5   CORE2#sh standby fastEthernet ?
+   Multilayer Switch5   CORE2#sh standby fastEthernet 0/0
+   Multilayer Switch4   CORE1>en
+   Multilayer Switch4   CORE1#sh stand f0/0
+   Multilayer Switch5   CORE2#sh stand ?
+   Multilayer Switch5   CORE2#sh stand brief 
+   Multilayer Switch4   CORE1#sh stand br
+   Multilayer Switch4   CORE1#conf t
+   Multilayer Switch4   CORE1(config)#int vlan 40
+   Multilayer Switch4   CORE1(config-if)#standby 40 ip 192.168.40.1
+   Multilayer Switch4   CORE1(config-if)#standby 40 priority 50
+   Multilayer Switch4   CORE1(config-if)#standby 40 preempt 
+   Multilayer Switch4   CORE1(config-if)#exit
+   Multilayer Switch4   CORE1(config)#int vlan 45
+   Multilayer Switch4   CORE1(config-if)#standby 45 ip 192.168.45.1
+   Multilayer Switch4   CORE1(config-if)#standby 45 priority 50
+   Multilayer Switch4   CORE1(config-if)#standby 45 preempt 
+   Multilayer Switch4   CORE1(config-if)#exit
+   Multilayer Switch4   CORE1(config)#int vlan 50
+   Multilayer Switch4   CORE1(config-if)#standby 50 ip 192.168.50.1
+   Multilayer Switch4   CORE1(config-if)#standby 50 priority 50
+   Multilayer Switch4   CORE1(config-if)#standby 50 pree
+   Multilayer Switch4   CORE1(config-if)#exit
+   Multilayer Switch4   CORE1(config)#end
+   Multilayer Switch4   CORE1#sh stan br
+   Multilayer Switch4   CORE1#sh stan br
+   Multilayer Switch5   CORE2#sh stand brief 
+   Multilayer Switch4   CORE1#sh stan br
+   Multilayer Switch5   CORE2#sh standby brief 
+   Multilayer Switch4   CORE1>en
+   Multilayer Switch4   CORE1#sh run
+   Multilayer Switch4   CORE1#conf t
+   Multilayer Switch4   CORE1(config)#ip dhcp pool st45
+   Multilayer Switch4   CORE1(dhcp-config)#network 192.168.45.0 255.255.255.0
+   Multilayer Switch4   CORE1(dhcp-config)#default-router 192.168.45.1
+   Multilayer Switch4   CORE1(dhcp-config)#end
+   Multilayer Switch4   CORE1#sh run
+   Multilayer Switch5   CORE2>en
+   Multilayer Switch5   CORE2#sh run
+   Multilayer Switch5   CORE2#conf t
+   Multilayer Switch5   CORE2(config)#ip dhcp pool st45
+   Multilayer Switch5   CORE2(dhcp-config)#network 192.168.45.0 255.255.255.0
+   Multilayer Switch5   CORE2(dhcp-config)#no default-router 192.168.40.1
+   Multilayer Switch5   CORE2(dhcp-config)#default-router 192.168.45.1
+   Multilayer Switch5   CORE2(dhcp-config)#end
+   Multilayer Switch5   CORE2#sh run
+   Router3   router1>en
+   Router3   router1#sh ip rou
+   Router3   router1#conf t
+   Router3   router1(config)#router ospf 1
+   Router3   router1(config-router)#end
+   Router3   router1#sh run
+   Router3   router1#conf t
+   Router3   router1(config)#router ospf 1
+   Router3   router1(config-router)#network 192.168.50.0 0.0.0.255 area 3
+   Router3   router1(config-router)#exit
+   Multilayer Switch4   CORE1#sh ip rou
+   Router3   router1(config)#end
+   Router3   router1#sh ip rou
+   Router4   router2>en
+   Router4   router2#conf t
+   Router4   router2(config)#router ospf 1
+   Router4   router2(config-router)#network 192.168.50.0 0.0.0.255 area 3
+   Router4   router2(config-router)#exit
+   Multilayer Switch4   CORE1#conf t
+   Multilayer Switch4   CORE1(config)#router ospf 1
+   Multilayer Switch4   CORE1(config-router)#network 192.168.50.0 0.0.0.255 area 3
+   Multilayer Switch4   CORE1(config-router)#exit
+   Router3   router1#conf t
+   Router3   router1(config)#end
+   Router3   router1#sh ip rou
+   Router4   router2(config)#end
+   Router4   router2#sh ip route 
+   Multilayer Switch5   CORE2>en
+   Multilayer Switch5   CORE2#conf t
+   Multilayer Switch5   CORE2(config)#int f0/1
+   Multilayer Switch5   CORE2(config-if)#sh
+   Multilayer Switch4   CORE1(config)#int f0/2
+   Multilayer Switch4   CORE1(config-if)#sh
+   Multilayer Switch5   CORE2(config-if)#int ra f0/4-5
+   Multilayer Switch5   CORE2(config-if-range)#sh
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#int r f0/4-5
+   Multilayer Switch5   CORE2(config-if-range)#no sh
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#int f0/1
+   Multilayer Switch5   CORE2(config-if)#no sh
+   Multilayer Switch4   CORE1(config-if)#int f0/2
+   Multilayer Switch4   CORE1(config-if)#no sh
+   Multilayer Switch0   R1>en
+   Multilayer Switch0   R1#conf t
+   Multilayer Switch0   R1(config)#end
+   Multilayer Switch0   R1#sh stan b
+   Multilayer Switch1 p   R2>en
+   Multilayer Switch1 p   R2#sh stand b
+   Multilayer Switch1 p   R2#conf t
+   Multilayer Switch1 p   R2(config)#int vlan 5
+   Multilayer Switch1 p   R2(config-if)#standby 0 priority 50
+   Multilayer Switch1 p   R2(config-if)#exit
+   Multilayer Switch1 p   R2(config)#int vlan 10
+   Multilayer Switch1 p   R2(config-if)#standby 10 priority 50
+   Multilayer Switch1 p   R2(config-if)#exit
+   Multilayer Switch1 p   R2(config)#int vlan 20
+   Multilayer Switch1 p   R2(config-if)#standby 20 prio 50
+   Multilayer Switch1 p   R2(config-if)#exit
+   Multilayer Switch2   R3>en
+   Multilayer Switch2   R3#sh run
+   Multilayer Switch2   R3#conf t
+   Multilayer Switch2   R3(config)#int vlan 25
+   Multilayer Switch2   R3(config-if)#standby 25 prio 50
+   Multilayer Switch2   R3(config-if)#exit
+   Multilayer Switch2   R3(config)#int vlan 30
+   Multilayer Switch2   R3(config-if)#standby 30 prio 50
+   Multilayer Switch2   R3(config-if)#exit
+   Multilayer Switch2   R3(config)#int vlan 35
+   Multilayer Switch2   R3(config-if)#standby 35 prio 50
+   Multilayer Switch2   R3(config-if)#exit
+   Multilayer Switch1 p   R2(config)#end
+   Multilayer Switch1 p   R2#sh standby brief 
+   Multilayer Switch0   R1#sh stan b
+   Multilayer Switch2   R3(config)#end
+   Multilayer Switch2   R3#sh stand b
+   Multilayer Switch3   Switch>en
+   Multilayer Switch3   Switch#sh stand b
+   Multilayer Switch0   R1#conf t
+   Multilayer Switch0   R1(config)#int r f0/1-3
+   Multilayer Switch0   R1(config-if-range)#sh
+   Multilayer Switch2   R3#conf t
+   Multilayer Switch2   R3(config)#int r f0/1-3
+   Multilayer Switch2   R3(config-if-range)#sh
+   Multilayer Switch1 p   R2#sh ip rou
+   Multilayer Switch1 p   R2#sh stand b
+   Multilayer Switch0   R1(config-if-range)#int r f0/1-3
+   Multilayer Switch0   R1(config-if-range)#no sh
+   Multilayer Switch2   R3(config-if-range)#int r f0/1-3
+   Multilayer Switch2   R3(config-if-range)#no sh
+   Multilayer Switch5   CORE2>en
+   Multilayer Switch5   CORE2#conf t
+   Multilayer Switch5   CORE2(config)#int r f0/1-5
+   Multilayer Switch5   CORE2(config-if-range)#sh
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#int r g0/1-2
+   Multilayer Switch5   CORE2(config-if-range)#shu
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#int r g0/1-2
+   Multilayer Switch5   CORE2(config-if-range)#no sh
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#int r f0/1-5
+   Multilayer Switch5   CORE2(config-if-range)#no sh
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch4   CORE1>en
+   Multilayer Switch4   CORE1#sh ip ospf neighbor 
+   Multilayer Switch4   CORE1#sh etherchannel summary 
+   Multilayer Switch5   CORE2(config)#int r f0/1-5
+   Multilayer Switch5   CORE2(config-if-range)#sh 
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#int r g0/1-2
+   Multilayer Switch5   CORE2(config-if-range)#sh
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#int r g0/1-2
+   Multilayer Switch5   CORE2(config-if-range)#no sh
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#int r f0/1-5
+   Multilayer Switch5   CORE2(config-if-range)#no sh
+   Multilayer Switch5   CORE2(config-if-range)#exit
+   Multilayer Switch5   CORE2(config)#end
+   Multilayer Switch5   CORE2#copy running-config startup-config 
+   Multilayer Switch4   CORE1#copy running-config st
+   Router5   Router>en
+   Router5   Router#show ip route
+   Router5   Router#show run
+   Router1   RT1>en
+   Router1   RT1#config t
+   Router1   RT1(config)#hostname INTERNET-RT1
+   Router1   INTERNET-RT1(config)#EX
+   Router1   INTERNET-RT1#show ip route
+   Router1   INTERNET-RT1#configure terminal 
+   Router1   INTERNET-RT1(config)#ping 200.172.3.2
+   Router1   INTERNET-RT1(config)#ex
+   Router1   INTERNET-RT1#ping 200.172.3.2
+   Switch8   A6>en
+   Switch8   A6#config t
+   Switch8   A6(config)#int f0/10
+   Switch8   A6(config-if)#switchport mode access
+   Switch8   A6(config-if)#switchport access vlan 35
+   Switch8   A6(config-if)#ex
+   Switch8   A6(config)#hostname SW-6
+   Switch8   SW-6(config)#EX
+   Switch2   A3>EN
+   Switch2   A3#CONFIG T
+   Switch2   A3(config)#hostname SW-3
+   Switch2   SW-3(config)#int f0/10
+   Switch2   SW-3(config-if)#switchport mode access 
+   Switch2   SW-3(config-if)#switchport access vlan 20
+   Switch7   A5>EN
+   Switch7   A5#CONFIG T
+   Switch7   A5(config)#Hostname SW-5
+   Switch6   A4>EN
+   Switch6   A4#CONFIG T
+   Switch6   A4(config)#Hostname SW-4
+   Multilayer Switch2   R3>EN
+   Multilayer Switch2   R3#CONFIG T
+   Multilayer Switch2   R3(config)#HOStname CORE-LAN-D
+   Multilayer Switch2   CORE-LAN-D(config)#E
+   Multilayer Switch2   CORE-LAN-D(config)#EX
+   Multilayer Switch3   Switch>EN
+   Multilayer Switch3   Switch#CONFIG T
+   Multilayer Switch3   Switch(config)#Hostname CORE-D1
+   Router2   Router>EN
+   Router2   Router#CONFIG T
+   Router2   Router(config)#Hostname ROUTER-LAN-D
+   Router4   router2>EN
+   Router4   router2#CONFIG T
+   Router4   router2(config)#Hostname 
+   Router4   router2(config)#Hostname BACKBONE-1
+   Router3   router1>EN
+   Router3   router1#CONFIG T
+   Router3   router1(config)#Hostname 
+   Router3   router1(config)#Hostname BACKBONE-2
+   Router0   Router>EN
+   Router0   Router#CONFIG T
+   Router0   Router(config)#Hostname 
+   Router0   Router(config)#Hostname ROUTEUR-LAN-G
+   Multilayer Switch0   R1>EN
+   Multilayer Switch0   R1#CONFIG T
+   Multilayer Switch0   R1(config)#Hostname LAN-CORE-D-1
+   Multilayer Switch1 p   R2>EN
+   Multilayer Switch1 p   R2#CONFIG T
+   Multilayer Switch1 p   R2(config)#Hostname LAN-CORE-G-2
+   Switch1   A2>EN
+   Switch1   A2#CONFIG T
+   Switch1   A2(config)#Hostname SW-LAN-G
+   Switch0   A1>EN
+   Switch0   A1#CONFIG T
+   Switch0   A1(config)#Hostname SW-LAN-G2
+   Switch5   A9>EN
+   Router5   Router>EN
+   Router5   Router#CONFI T
+   Router5   Router(config)#Hostname ROUTER-CONTROLEUR
+   Multilayer Switch2   CORE-LAN-D>en
+   Multilayer Switch2   CORE-LAN-D#config t
+   Multilayer Switch2   CORE-LAN-D(config)#do show run
+   Multilayer Switch2   CORE-LAN-D(config)#telephony-service
+   Multilayer Switch2   CORE-LAN-D(config)#telephony-servicer
+   Multilayer Switch2   CORE-LAN-D(config)#telephony-service
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#cnf t
+   Router2   ROUTER-LAN-D#conf t
+   Router2   ROUTER-LAN-D(config)#telephony-service
+   Router2   ROUTER-LAN-D(config-telephony)#ex
+   Switch7   SW-5>en
+   Switch7   SW-5#config t
+   Switch7   SW-5(config)#vlan 200
+   Switch7   SW-5(config-vlan)#exit
+   Switch7   SW-5(config)#vlan 200
+   Switch7   SW-5(config-vlan)#name voice 
+   Switch7   SW-5(config-vlan)#ex
+   Switch7   SW-5(config)#int f0/1
+   Switch7   SW-5(config-if)#switchport voice vlan 200
+   Switch8   SW-6>en
+   Switch8   SW-6#config t
+   Switch8   SW-6(config)#vlan 300
+   Switch8   SW-6(config-vlan)#name voice-2
+   Switch8   SW-6(config-vlan)#ex
+   Switch8   SW-6(config)#int f0/1
+   Switch8   SW-6(config-if)#switchport voice vlan 300
+   Switch6   SW-4(config)#vlan 400
+   Switch6   SW-4(config-vlan)#name voice-3
+   Switch6   SW-4(config-vlan)#ex
+   Switch6   SW-4(config)#int f0/1
+   Switch6   SW-4(config-if)#switchport voice vlan 400
+   Switch6   SW-4(config-if)#ex
+   Router2   ROUTER-LAN-D(config)#ip dhcp pool telephony
+   Router2   ROUTER-LAN-D(dhcp-config)#network 10.10.10.0 255.255.255.0
+   Router2   ROUTER-LAN-D(dhcp-config)#default-router 10.10.10.1
+   Router2   ROUTER-LAN-D(dhcp-config)#option 150 ip 10.10.10.1
+   Router2   ROUTER-LAN-D(dhcp-config)#ex
+   Switch7   SW-5(config-if)#no switchport voice vlan 200
+   Switch8   SW-6(config-if)#no switchport voice vlan 300
+   Switch8   SW-6(config-if)#ex
+   Switch8   SW-6(config)#no vlan 300
+   Switch7   SW-5(config-if)#ex
+   Switch7   SW-5(config)#no vlan 200
+   Switch6   SW-4(config)#ex
+   Switch6   SW-4#CONFIG T
+   Switch6   SW-4(config)#int f0/1
+   Switch6   SW-4(config-if)#no switchport voice vlan 400
+   Switch6   SW-4(config-if)#no vlan 400
+   Switch6   SW-4(config)#do show vlan 
+   Switch8   SW-6(config)#vlan 200
+   Switch8   SW-6(config-vlan)#name voice
+   Switch7   SW-5(config)#vlan 200
+   Switch7   SW-5(config-vlan)#name voice
+   Switch6   SW-4(config)#vlan 200
+   Switch6   SW-4(config-vlan)#name voice
+   Switch6   SW-4(config-vlan)#int f0/1
+   Switch6   SW-4(config-if)#switchport voice vlan 200
+   Switch7   SW-5(config-vlan)#int f0/1
+   Switch7   SW-5(config-if)#switchport voice vlan 200
+   Switch7   SW-5(config-if)#ex
+   Switch7   SW-5(config)#do show vlan
+   Switch8   SW-6(config-vlan)#int f0/1
+   Switch8   SW-6(config-if)#switchport voice vlan 200
+   Router2   ROUTER-LAN-D(config)#int f0/1.200
+   Router2   ROUTER-LAN-D(config-subif)#encapsulation dot1Q 200
+   Router2   ROUTER-LAN-D(config-subif)#ip add 10.10.10.1 255.255.255.0
+   Router2   ROUTER-LAN-D(config-subif)#ex
+   Router2   ROUTER-LAN-D(config)#telephony-service 
+   Router2   ROUTER-LAN-D(config-telephony)#max-ephones 4
+   Router2   ROUTER-LAN-D(config-telephony)#max-dn 4
+   Router2   ROUTER-LAN-D(config-telephony)#ip source-address 10.10.10.1 port 2000
+   Router2   ROUTER-LAN-D(config-telephony)#?
+   Router2   ROUTER-LAN-D(config-telephony)#auto?
+   Router2   ROUTER-LAN-D(config-telephony)#auto assign 1 to 4
+   Router2   ROUTER-LAN-D(config-telephony)#ephone-dn 1
+   Router2   ROUTER-LAN-D(config-ephone-dn)#number 1000
+   Router2   ROUTER-LAN-D(config-ephone-dn)#ephone-dn 2
+   Router2   ROUTER-LAN-D(config-ephone-dn)#number 2000
+   Router2   ROUTER-LAN-D(config-ephone-dn)#ephone-dn 3
+   Router2   ROUTER-LAN-D(config-ephone-dn)#number 3000
+   Router2   ROUTER-LAN-D(config-ephone-dn)#ephone-dn 4
+   Router2   ROUTER-LAN-D(config-ephone-dn)#number 4000
+   Multilayer Switch2   CORE-LAN-D>en
+   Multilayer Switch2   CORE-LAN-D#show vlan 
+   Multilayer Switch2   CORE-LAN-D#config t
+   Multilayer Switch2   CORE-LAN-D(config)#vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-vlan)#name voice
+   Multilayer Switch2   CORE-LAN-D(config-vlan)#ex
+   Multilayer Switch2   CORE-LAN-D(config)#int vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip add 10.10.10.55 255.255.255.0
+   Multilayer Switch2   CORE-LAN-D(config-if)#no shut
+   Multilayer Switch2   CORE-LAN-D(config-if)#ex
+   Multilayer Switch2   CORE-LAN-D(config)#do show run
+   Multilayer Switch2   CORE-LAN-D(config)#ex
+   Multilayer Switch2   CORE-LAN-D#show vlan 
+   Multilayer Switch3   CORE-D1>en
+   Multilayer Switch3   CORE-D1#config t
+   Multilayer Switch3   CORE-D1(config)#vlan 200
+   Multilayer Switch3   CORE-D1(config-vlan)#name voice
+   Multilayer Switch3   CORE-D1(config-vlan)#ex
+   Multilayer Switch3   CORE-D1(config)#int vlan 200
+   Multilayer Switch3   CORE-D1(config-if)#ip add 10.10.10.55 255.255.255.0
+   Multilayer Switch3   CORE-D1(config-if)#no shut
+   Router2   ROUTER-LAN-D(config-ephone-dn)#ex
+   Router2   ROUTER-LAN-D(config)#do show run
+   Router2   ROUTER-LAN-D(config)#router ospf 1
+   Router2   ROUTER-LAN-D(config-router)#network 10.10.10.0 0.0.0.255 area 2
+   Multilayer Switch2   CORE-LAN-D#config t
+   Multilayer Switch2   CORE-LAN-D(config)#int vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip dhcp relay 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip dhcp relay enable
+   Switch7   SW-5(config)#int f0/4
+   Switch7   SW-5(config-if)#switchport mode access
+   Switch7   SW-5(config-if)#switchport mode access
+   Switch7   SW-5(config-if)#switchport mode trunk
+   Multilayer Switch2   CORE-LAN-D(config-if)#ex
+   Multilayer Switch2   CORE-LAN-D(config)#int f0/2
+   Multilayer Switch2   CORE-LAN-D(config-if)#no switchport 
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip dhcp relay 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip dhcp relay enable
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip dhcp relay add 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip dhcp relay add 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config-if)#e
+   Multilayer Switch2   CORE-LAN-D(config)#int vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip helper-address 10.10.10.1
+   Multilayer Switch3   CORE-D1(config-if)#ex
+   Multilayer Switch3   CORE-D1(config)#int vlan 200
+   Multilayer Switch3   CORE-D1(config-if)#ip helper-address 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config-if)#ex
+   Multilayer Switch2   CORE-LAN-D(config)#ex
+   Multilayer Switch2   CORE-LAN-D#show ip route
+   Multilayer Switch2   CORE-LAN-D#config t
+   Multilayer Switch2   CORE-LAN-D(config)#do show run
+   Multilayer Switch2   CORE-LAN-D(config)#router ospf 1
+   Multilayer Switch2   CORE-LAN-D(config-router)#network 10.10.10.0 0.0.0.255 area 2
+   Multilayer Switch3   CORE-D1(config-if)#ex
+   Multilayer Switch3   CORE-D1(config)#do show run
+   Multilayer Switch3   CORE-D1(config)#router ospf 1
+   Multilayer Switch3   CORE-D1(config-router)#network 10.10.10.0 0.0.0.255 area 2
+   Multilayer Switch2   CORE-LAN-D(config-router)#exit
+   Multilayer Switch2   CORE-LAN-D(config)#ping 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config)#ex
+   Multilayer Switch2   CORE-LAN-D#ping 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D#config t
+   Multilayer Switch2   CORE-LAN-D(config)#int f0/4
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport mode trunk
+   Multilayer Switch2   CORE-LAN-D(config-if)#ex
+   Multilayer Switch2   CORE-LAN-D(config)#ip dhcp pool telephony
+   Multilayer Switch2   CORE-LAN-D(dhcp-config)#network 10.10.10.0 255.255.255.0
+   Multilayer Switch2   CORE-LAN-D(dhcp-config)#default-router 10.10.10.55
+   Multilayer Switch2   CORE-LAN-D(dhcp-config)#option 150 10.10.10.55
+   Multilayer Switch2   CORE-LAN-D(dhcp-config)#option 150 ip 10.10.10.55
+   DG   C:\>ping 10.10.10.55 -t
+   DG   C:\>ping 10.10.10.55 -t
+   Multilayer Switch2   CORE-LAN-D(dhcp-config)#exit
+   Multilayer Switch2   CORE-LAN-D(config)#end
+   Multilayer Switch2   CORE-LAN-D#ping 10.10.10.1
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#ping 10.10.10.55
+   Router2   ROUTER-LAN-D#ping 10.10.10.55
+   Router2   ROUTER-LAN-D#ping 10.10.10.55
+   Router2   ROUTER-LAN-D#show run
+   Router2   ROUTER-LAN-D#ip route 0.0.0.0 0.0.0.0 10.10.10.55
+   Router2   ROUTER-LAN-D#config t
+   Router2   ROUTER-LAN-D(config)#ip route 0.0.0.0 0.0.0.0 10.10.10.55
+   Multilayer Switch2   CORE-LAN-D#config t
+   Multilayer Switch2   CORE-LAN-D(config)#ip dhcp pool telephony
+   Multilayer Switch2   CORE-LAN-D(dhcp-config)#ip dhcp excluded 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config)#ip dhcp excluded 10.10.10.55
+   Multilayer Switch2   CORE-LAN-D(config)#no dhcp pool telephony
+   Multilayer Switch2   CORE-LAN-D(config)#no ip dhcp pool telephony
+   Multilayer Switch2   CORE-LAN-D(config)#do show run
+   Multilayer Switch2   CORE-LAN-D(config)#ip route 0.0.0.0 0.0.0.0 10.10.10.1
+   Router2   ROUTER-LAN-D(config)#exit
+   Router2   ROUTER-LAN-D#ping 10.10.10.55
+   Router2   ROUTER-LAN-D#ping 192.168.4.1
+   Router2   ROUTER-LAN-D#ping 10.10.10.55
+   Multilayer Switch2   CORE-LAN-D(config)#telephony-service
+   Router2   ROUTER-LAN-D#config t
+   Router2   ROUTER-LAN-D(config)#no int f0/1.200
+   Switch7   SW-5>en
+   Switch7   SW-5#config t
+   Switch7   SW-5(config)#int f0/1
+   Switch7   SW-5(config-if)#no switchport voice vlan 200
+   Switch6   SW-4(config-if)#no switchport voice vlan 200
+   Switch8   SW-6>en
+   Switch8   SW-6#config t
+   Switch8   SW-6(config)#int f0/1
+   Switch8   SW-6(config-if)#no switchport voice vlan 200
+   Switch8   SW-6(config-if)#switchport voice vlan 35
+   Switch7   SW-5(config-if)#switchport voice vlan 30
+   Switch6   SW-4(config-if)#switchport voice vlan 25
+   Switch6   SW-4(config-if)#no switchport voice vlan 25
+   Switch7   SW-5(config-if)#no switchport voice vlan 30
+   Switch8   SW-6(config-if)#no switchport voice vlan 35
+   Switch8   SW-6(config-if)#ex
+   Switch8   SW-6(config)#do show vlan
+   Switch8   SW-6(config)#int f0/1
+   Switch8   SW-6(config-if)#switchport voice vlan 200
+   Switch7   SW-5(config-if)#switchport voice vlan 200
+   Switch6   SW-4(config-if)#switchport voice vlan 200
+   Switch8   SW-6(config-if)#switchport voice vlan 200
+   Switch6   SW-4(config-if)#switchport voice vlan 200
+   Multilayer Switch2   CORE-LAN-D(config)#ex
+   Multilayer Switch2   CORE-LAN-D#ping 10.10.10.1
+   Router2   ROUTER-LAN-D(config)#do show run
+   Multilayer Switch2   CORE-LAN-D#config t
+   Multilayer Switch2   CORE-LAN-D(config)#int f0/4.200
+   Router2   ROUTER-LAN-D(config)#ip route 0.0.0.0 0.0.0.0 10.10.10.55
+   Router2   ROUTER-LAN-D(config)#no ip route 0.0.0.0 0.0.0.0 10.10.10.55
+   Router2   ROUTER-LAN-D(config)#int f1/0
+   Router2   ROUTER-LAN-D(config-if)#ip add 10.10.10.1 255.255.255.0
+   Router2   ROUTER-LAN-D(config-if)#no shut
+   Multilayer Switch2   CORE-LAN-D(config)#int f0/5
+   Multilayer Switch2   CORE-LAN-D(config-if)#no switchport 
+   Multilayer Switch2   CORE-LAN-D(config-if)#exit
+   Multilayer Switch2   CORE-LAN-D(config)#int f0/4
+   Multilayer Switch2   CORE-LAN-D(config-if)#int vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-if)#no ip hel
+   Multilayer Switch2   CORE-LAN-D(config-if)#no ip helper-address 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config-if)#int f0/5
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip add 10.10.10.2 255.255.255.0
+   Multilayer Switch2   CORE-LAN-D(config-if)#ip add 10.10.10.6 255.255.255.0
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport
+   Multilayer Switch2   CORE-LAN-D(config-if)#int f0/5
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport mode access 
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport mode trunk
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport vlan allowed vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport  allowed vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport trunk allowed vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-if)#exit
+   Multilayer Switch2   CORE-LAN-D(config)#no ip route 0.0.0.0 0.0.0.0 10.10.10.1
+   Multilayer Switch2   CORE-LAN-D(config)#no vlan 200
+   Multilayer Switch2   CORE-LAN-D(config)#router ospf 1
+   Multilayer Switch2   CORE-LAN-D(config-router)#no network 10.10.10.0 0.0.0.255 area 2
+   Multilayer Switch2   CORE-LAN-D(config-router)#vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-vlan)#ex
+   Multilayer Switch2   CORE-LAN-D(config)#int vlan 200
+   Multilayer Switch2   CORE-LAN-D(config-if)#no ip add 10.10.10.55 255.255.255.0
+   Multilayer Switch2   CORE-LAN-D(config-if)#int f0/10
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport mode acces
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport mode trunk
+   Multilayer Switch2   CORE-LAN-D(config-if)#switchport trunk allowed vlan 200
+   Switch7   SW-5>en
+   Switch7   SW-5#config t
+   Switch7   SW-5(config)#int f0/10
+   Switch7   SW-5(config-if)#switchport mode access 
+   Switch7   SW-5(config-if)#switchport mode trunk 
+   Switch7   SW-5(config-if)#switchport trunk allowed vlan 200
+   Router2   ROUTER-LAN-D(config-if)#end
+   Router2   ROUTER-LAN-D#show run
+   Router2   ROUTER-LAN-D#config t
+   Router2   ROUTER-LAN-D(config)#int f1/0
+   Router2   ROUTER-LAN-D(config-if)#no ip add 10.10.10.1 255.255.255.0
+   Router2   ROUTER-LAN-D(config-if)#no shut
+   Router2   ROUTER-LAN-D(config-if)#ex
+   Router2   ROUTER-LAN-D(config)#int f1/0.200
+   Router2   ROUTER-LAN-D(config-subif)#encapsulation dot1Q 200
+   Router2   ROUTER-LAN-D(config-subif)#ip add 10.10.10.1 255.255.255.0
+   Router2   ROUTER-LAN-D(config-subif)#no shut
+   DG-RH   C:\>ping 10.10.10.1 -y
+   DG-RH   C:\>-t
+   DG-RH   C:\>ping 10.10.10.1 -t
+   DG-RH   C:\>ping 10.10.10.1 -c5
+   DG-RH   C:\>ping  -t 10.10.10.1 -c5
+   Router0   ROUTEUR-LAN-G>en
+   Router0   ROUTEUR-LAN-G#config t
+   Router0   ROUTEUR-LAN-G(config)#int f1/1
+   Router0   ROUTEUR-LAN-G(config-if)#ex
+   Router0   ROUTEUR-LAN-G(config)#int f1/1.100
+   Router0   ROUTEUR-LAN-G(config-subif)#ip add 20.20.20.1 255.255.255.0
+   Router0   ROUTEUR-LAN-G(config-subif)#int f1/1.100
+   Router0   ROUTEUR-LAN-G(config-subif)#encapsulation dot1Q 100
+   Router0   ROUTEUR-LAN-G(config-subif)#ip add 20.20.20.1 255.255.255.0
+   Router0   ROUTEUR-LAN-G(config-subif)#no shut
+   Router0   ROUTEUR-LAN-G(config-subif)#ex
+   Router0   ROUTEUR-LAN-G(config)#int f1/1
+   Router0   ROUTEUR-LAN-G(config-if)#no shut
+   Router0   ROUTEUR-LAN-G(config-if)#ex
+   Router0   ROUTEUR-LAN-G(config)#ip dhcp pool telephony-2
+   Router0   ROUTEUR-LAN-G(dhcp-config)#network 20.20.20.0 255.255.255.0
+   Router0   ROUTEUR-LAN-G(dhcp-config)#default-router 20.20.20.1
+   Router0   ROUTEUR-LAN-G(dhcp-config)#option 150 ip 20.20.20.1
+   Router0   ROUTEUR-LAN-G(dhcp-config)#ex
+   Multilayer Switch1 p   LAN-CORE-G-2>en
+   Multilayer Switch1 p   LAN-CORE-G-2#config t
+   Multilayer Switch1 p   LAN-CORE-G-2(config)#int f0/11
+   Multilayer Switch1 p   LAN-CORE-G-2(config-if)#switchport mode access 
+   Multilayer Switch1 p   LAN-CORE-G-2(config-if)#switchport mode trunk 
+   Multilayer Switch1 p   LAN-CORE-G-2(config-if)#switchport trunk allowed vlan 100
+   Multilayer Switch1 p   LAN-CORE-G-2(config-if)#ex
+   Multilayer Switch1 p   LAN-CORE-G-2(config)#vlan 100
+   Multilayer Switch1 p   LAN-CORE-G-2(config-vlan)#name voip2
+   Switch2   SW-3>en
+   Switch2   SW-3#config t
+   Switch2   SW-3(config)#vlan 100
+   Switch2   SW-3(config-vlan)#name voip2
+   Switch2   SW-3(config-vlan)#ex
+   Switch2   SW-3(config)#int f0/1
+   Switch2   SW-3(config-if)#switchport voice vlan 100
+   Switch2   SW-3(config-if)#ex
+   Switch2   SW-3(config)#int f0/2
+   Switch2   SW-3(config-if)#switchport voice vlan 100
+   Switch2   SW-3(config-if)#switchport mode access 
+   Switch2   SW-3(config-if)#int f0/1
+   Switch2   SW-3(config-if)#switchport mode access 
+   Router0   ROUTEUR-LAN-G>en
+   Router0   ROUTEUR-LAN-G#config t
+   Router0   ROUTEUR-LAN-G(config)#ip dhcp pool telephony-2
+   Router0   ROUTEUR-LAN-G(dhcp-config)#ip dhcp excluded 20.20.20.1
+   Router0   ROUTEUR-LAN-G(config)#ip dhcp excluded 20.20.20.4 20.20.20.254
+   Router0   ROUTEUR-LAN-G(config)#ex
+   Router0   ROUTEUR-LAN-G#config t
+   Router0   ROUTEUR-LAN-G(config)#telephony-service 
+   Router0   ROUTEUR-LAN-G(config-telephony)#max-dn 3
+   Router0   ROUTEUR-LAN-G(config-telephony)#max-ephones 3
+   Router0   ROUTEUR-LAN-G(config-telephony)#ip source-address 20.20.20.1 port 2000
+   Router0   ROUTEUR-LAN-G(config-telephony)#ephone-dn 1
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#number 100
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#ephone-dn 2
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#number 200
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#ex
+   Router0   ROUTEUR-LAN-G(config)#auto assign 1 to 3
+   Router0   ROUTEUR-LAN-G(config)#telephony-service 
+   Router0   ROUTEUR-LAN-G(config-telephony)#auto assign 1 to 3
+   Router0   ROUTEUR-LAN-G(config-telephony)#ex
+   Switch2   SW-3(config-if)#int f0/1
+   Switch2   SW-3(config-if)#switchport mode access 
+   Switch2   SW-3(config-if)#switchport voice vlan 100
+   Switch2   SW-3(config-if)#int f0/2
+   Switch2   SW-3(config-if)#switchport mode access 
+   Switch2   SW-3(config-if)#switchport voice vlan 100
+   Router0   ROUTEUR-LAN-G(config)#ip dhcp pool telephony-2
+   Router0   ROUTEUR-LAN-G(dhcp-config)#option 150 ip 20.20.20.1
+   Router0   ROUTEUR-LAN-G(dhcp-config)#ex
+   Router0   ROUTEUR-LAN-G(config)#do show run
+   Switch2   SW-3(config-if)#ex
+   Switch2   SW-3(config)#int f0/1
+   Switch2   SW-3(config-if)#switchport mode trunk
+   Router0   ROUTEUR-LAN-G(config)#do show run
+   Router0   ROUTEUR-LAN-G(config)#router ospf 1
+   Router0   ROUTEUR-LAN-G(config-router)#network 20.20.20.0 0.0.0.255 area 1
+   Router0   ROUTEUR-LAN-G(config-router)#ex
+   Router0   ROUTEUR-LAN-G(config)#dial ?
+   Router0   ROUTEUR-LAN-G(config)#dial-peer voice 10 voip
+   Router0   ROUTEUR-LAN-G(config-dial-peer)#?
+   Router0   ROUTEUR-LAN-G(config-dial-peer)#destination-pattern 1...
+   Router0   ROUTEUR-LAN-G(config-dial-peer)#destination-pattern 2...
+   Router0   ROUTEUR-LAN-G(config-dial-peer)#destination-pattern 3...
+   Router0   ROUTEUR-LAN-G(config-dial-peer)#session target ipv4:10.10.10.1
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#config t
+   Router2   ROUTER-LAN-D(config)#dial-peer voice 11 voip 
+   Router2   ROUTER-LAN-D(config-dial-peer)#destination-pattern 1..
+   Router2   ROUTER-LAN-D(config-dial-peer)#destination-pattern 2..
+   Router2   ROUTER-LAN-D(config-dial-peer)#session target ipv4:20.20.20.1
+   Router0   ROUTEUR-LAN-G(config-dial-peer)#session target ipv4:1.1.1.2
+   Router2   ROUTER-LAN-D(config-dial-peer)#session target ipv4:3.3.3.2
+   Router2   ROUTER-LAN-D(config-dial-peer)#ex
+   Router2   ROUTER-LAN-D(config)#no dial-peer voice 11 voip 
+   Router2   ROUTER-LAN-D(config)#dial-peer voice 10 voip 
+   Router2   ROUTER-LAN-D(config-dial-peer)#session target ipv4:3.3.3.2
+   Router2   ROUTER-LAN-D(config-dial-peer)#destination-pattern 2..
+   Router2   ROUTER-LAN-D(config-dial-peer)#destination-pattern 1..
+   Router0   ROUTEUR-LAN-G(config-dial-peer)#session target ipv4:10.10.10.1
+   Router2   ROUTER-LAN-D(config-dial-peer)#session target ipv4:20.20.20.1
+   Router0   ROUTEUR-LAN-G(config-dial-peer)#ex
+   Router0   ROUTEUR-LAN-G(config)#do show run
+   Router2   ROUTER-LAN-D(config-dial-peer)#ex
+   Router2   ROUTER-LAN-D(config)#do show run
+   Router0   ROUTEUR-LAN-G(config)#telephony-service 
+   Router0   ROUTEUR-LAN-G(config-telephony)#ephone-dn 1
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#number 100
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#ephone-dn 2
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#number 110
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#ephone-dn 1
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#?
+   Router0   ROUTEUR-LAN-G(config-ephone-dn)#ephone 1
+   Router0   ROUTEUR-LAN-G(config-ephone)#EX
+   Router0   ROUTEUR-LAN-G(config)#iphone 1
+   Router0   ROUTEUR-LAN-G(config)#ephone 1
+   Router0   ROUTEUR-LAN-G(config-ephone)#mac-address 
+   Router0   ROUTEUR-LAN-G(config-ephone)#mac-address 0003.E468.8CB3
+   Router0   ROUTEUR-LAN-G(config-ephone)#mac-address 00E0.A3E7.9E22
+   Router2   ROUTER-LAN-D(config)#n
+   Router2   ROUTER-LAN-D(config)#do show run
+   Router2   ROUTER-LAN-D(config)#ephone-dn 2
+   Router2   ROUTER-LAN-D(config-ephone-dn)#number 3001
+   Router2   ROUTER-LAN-D(config-ephone-dn)#ephone-dn 1
+   Router2   ROUTER-LAN-D(config-ephone-dn)#number 3100
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#show run
+   Router0(1)   Router>en
+   Router0(1)   Router#show run
+   Router0   ROUTEUR-LAN-G>dn
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#config t
+   Router2   ROUTER-LAN-D(config)#int tunnel 1
+   Router2   ROUTER-LAN-D(config-if)#ip add 209.128.16.2 255.255.255.0
+   Router2   ROUTER-LAN-D(config-if)#tunnel source serial 0/2/0
+   Router2   ROUTER-LAN-D(config-if)#tunnel destination 1.1.1.1
+   Router2   ROUTER-LAN-D(config-if)#ex
+   Router2   ROUTER-LAN-D(config)#ex
+   Router2   ROUTER-LAN-D#show run
+   Router2   ROUTER-LAN-D#config t
+   Router2   ROUTER-LAN-D(config)#router ospf 1
+   Router2   ROUTER-LAN-D(config-router)#network 209.128.16.0 0.0.0.255 area 0
+   Router0   ROUTEUR-LAN-G>en
+   Router0   ROUTEUR-LAN-G#config t
+   Router0   ROUTEUR-LAN-G(config)#int tunnel 1
+   Router0   ROUTEUR-LAN-G(config-if)#tunnel source serial 0/3/0
+   Router0   ROUTEUR-LAN-G(config-if)#tunnel destination 3.3.3.2
+   Router0   ROUTEUR-LAN-G(config-if)#ex
+   Router0   ROUTEUR-LAN-G(config)#router ospf 1
+   Router0   ROUTEUR-LAN-G(config-router)#network 209.128.16.0 0.0.0.255 area 0
+   Router1   INTERNET-RT1>en
+   Router1   INTERNET-RT1#config t
+   Router1   INTERNET-RT1(config)#do show run
+   Router1   INTERNET-RT1(config)#router ospf 1
+   Router1   INTERNET-RT1(config-router)#network 209.128.16.0 0.0.0.255 area 0
+   Router1   INTERNET-RT1(config-router)#ex
+   Router0   ROUTEUR-LAN-G(config-router)#ex
+   Router0   ROUTEUR-LAN-G(config)#int tunnel 1
+   Router0   ROUTEUR-LAN-G(config-if)#ip add 209.128.16.1 255.255.255.0
+   Router0   ROUTEUR-LAN-G(config-if)#exit
+   Router0   ROUTEUR-LAN-G(config)#ip route 192.168.5.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config)#ip route 192.168.10.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config)#ip route 192.168.20.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config)#ip route 20.20.20.0 255.255.255.0 209.128.16.2
+   Router2   ROUTER-LAN-D(config-router)#ex
+   Router2   ROUTER-LAN-D(config)#ip route 192.168.25.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#ip route 192.168.30.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#ip route 192.168.35.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#ip route 10.10.10.0 255.255.255.0 209.128.16.1
+   Router0   ROUTEUR-LAN-G(config)#exit
+   Router0   ROUTEUR-LAN-G#wr
+   Router0   ROUTEUR-LAN-G#reload
+   Router2   ROUTER-LAN-D(config)#ex
+   Router2   ROUTER-LAN-D#wr
+   Router2   ROUTER-LAN-D#reload 
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#show run
+   Multilayer Switch3   CORE-D1>en
+   Multilayer Switch3   CORE-D1#show run
+   Multilayer Switch3   CORE-D1#config t
+   Multilayer Switch3   CORE-D1(config)#ip route 0.0.0.0 0.0.0.0 209.128.16.2
+   Multilayer Switch2   CORE-LAN-D>en
+   Multilayer Switch2   CORE-LAN-D#config t
+   Multilayer Switch2   CORE-LAN-D(config)#ip route 0.0.0.0 0.0.0.0 209.128.16.2
+   Router2   ROUTER-LAN-D#config t
+   Router2   ROUTER-LAN-D(config)#ip route 0.0.0.0 0.0.0.0 209.128.16.2
+   Router2   ROUTER-LAN-D(config)#ip route 0.0.0.0 0.0.0.0 209.128.16.1
+   Multilayer Switch3   CORE-D1(config)#ip route 192.168.25.0 255.255.255.0 209.128.16.1 
+   Multilayer Switch3   CORE-D1(config)#no ip route 192.168.25.0 255.255.255.0 209.128.16.1 
+   Multilayer Switch3   CORE-D1(config)#no ip route 192.168.25.0 255.255.255.0 192.168.3.2
+   Multilayer Switch3   CORE-D1(config)#ip route 192.168.25.0 255.255.255.0 192.168.3.2
+   Multilayer Switch3   CORE-D1(config)#ip route 209.128.16.0 255.255.255.0 192.168.3.
+   Multilayer Switch3   CORE-D1(config)#ip route 209.128.16.0 255.255.255.0 192.168.3.2
+   Multilayer Switch3   CORE-D1(config)#no ip route 209.128.16.0 255.255.255.0 192.168.3.2
+   Multilayer Switch3   CORE-D1(config)#router ospf 1
+   Router0   ROUTEUR-LAN-G>en
+   Router0   ROUTEUR-LAN-G#config t
+   Router0   ROUTEUR-LAN-G(config)#do show run
+   Router0   ROUTEUR-LAN-G(config)#no ip route 192.168.5.0 255.255.255.0 209.128.16.2 
+   Router0   ROUTEUR-LAN-G(config)#no ip route 192.168.10.0 255.255.255.0 209.128.16.2 
+   Router0   ROUTEUR-LAN-G(config)#no ip route 192.168.20.0 255.255.255.0 209.128.16.2 
+   Router0   ROUTEUR-LAN-G(config)#no ip route 20.20.20.0 255.255.255.0 209.128.16.2 
+   Router0   ROUTEUR-LAN-G(config)#ex
+   Router0   ROUTEUR-LAN-G#wr
+   Router0   ROUTEUR-LAN-G#reload 
+   Router2   ROUTER-LAN-D(config)#no ip route 0.0.0.0 0.0.0.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#do show run
+   Router2   ROUTER-LAN-D(config)#no ip route 192.168.5.0 255.255.255.0 209.128.16.2 
+   Router2   ROUTER-LAN-D(config)#no ip route 192.168.25.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#no ip route 192.168.35.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#no ip route 192.168.30.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#no ip route 10.10.10.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#exit
+   Router2   ROUTER-LAN-D#wr
+   Router2   ROUTER-LAN-D#reload 
+   Router0   ROUTEUR-LAN-G>en
+   Router0   ROUTEUR-LAN-G#do show run
+   Router0   ROUTEUR-LAN-G#show run
+   Router0   ROUTEUR-LAN-G#config t
+   Router0   ROUTEUR-LAN-G(config)#router ospf 1
+   Router0   ROUTEUR-LAN-G(config-router)#no network 209.128.16.0 0.0.0.255 area 0
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#config t
+   Router2   ROUTER-LAN-D(config)#config t
+   Router2   ROUTER-LAN-D(config)#router ospf 1
+   Router2   ROUTER-LAN-D(config-router)#no network 209.128.16.0 0.0.0.255 area 0
+   Router2   ROUTER-LAN-D(config-router)#ex
+   Router2   ROUTER-LAN-D(config)#do show run
+   Multilayer Switch3   CORE-D1(config-router)#ex
+   Multilayer Switch3   CORE-D1(config)#ip route 192.168.25.0 255.255.255.0 209.128.16.1
+   Multilayer Switch0   LAN-CORE-D-1>en
+   Multilayer Switch0   LAN-CORE-D-1#config t
+   Multilayer Switch0   LAN-CORE-D-1(config)#ip route 192.168.5.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config-router)#ex
+   Router0   ROUTEUR-LAN-G(config)#do show run
+   Router0   ROUTEUR-LAN-G(config)#router ospf 1
+   Router0   ROUTEUR-LAN-G(config-router)#network 209.128.16.0 0.0.0.255 area 0
+   Router2   ROUTER-LAN-D(config)#router ospf 1
+   Router2   ROUTER-LAN-D(config-router)#network 209.128.16.0 0.0.0.255 area 0
+   Router0   ROUTEUR-LAN-G(config-router)#no network 209.128.16.0 0.0.0.255 area 0
+   Router0   ROUTEUR-LAN-G(config-router)#network 209.128.16.0 0.0.0.255 area 1
+   Router2   ROUTER-LAN-D(config-router)#no network 209.128.16.0 0.0.0.255 area 0
+   Router2   ROUTER-LAN-D(config-router)#network 209.128.16.0 0.0.0.255 area 2
+   Router2   ROUTER-LAN-D(config-router)#ex
+   Router2   ROUTER-LAN-D(config)#ip route 192.168.5.0 255.255.255.0 209.128.16.1
+   Router0   ROUTEUR-LAN-G(config-router)#ex
+   Router0   ROUTEUR-LAN-G(config)#ip route 192.168.25.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config)#router ospf 1
+   Router0   ROUTEUR-LAN-G(config-router)#no network 209.128.16.0 0.0.0.255 area 1
+   Router0   ROUTEUR-LAN-G(config-router)#network 209.128.16.0 0.0.0.255 area 0
+   Router2   ROUTER-LAN-D(config)#ip route 192.168.5.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#router ospf 1
+   Router2   ROUTER-LAN-D(config-router)#no network 209.128.16.0 0.0.0.255 area 2
+   Router2   ROUTER-LAN-D(config-router)#network 209.128.16.0 0.0.0.255 area 0
+   Multilayer Switch3   CORE-D1(config)#no ip route 192.168.25.0 255.255.255.0 209.128.16.1
+   Multilayer Switch0   LAN-CORE-D-1(config)#no ip route 192.168.5.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config-router)#end
+   Router0   ROUTEUR-LAN-G#config t
+   Router0   ROUTEUR-LAN-G(config)#int tunnel 1
+   Router0   ROUTEUR-LAN-G(config-if)#tunnel destination 3.3.3.1
+   Router0   ROUTEUR-LAN-G(config-if)#ex
+   Router0   ROUTEUR-LAN-G(config)#do show run
+   Router2   ROUTER-LAN-D(config-router)#ex
+   Router2   ROUTER-LAN-D(config)#ip route 192.168.10.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#ip route 192.168.20.0 255.255.255.0 209.128.16.1
+   Router2   ROUTER-LAN-D(config)#ip route 20.20.20.0 255.255.255.0 209.128.16.1
+   Router0   ROUTEUR-LAN-G(config)#ip route 192.168.35.0 255.255.255.0 209.128.16.1
+   Router0   ROUTEUR-LAN-G(config)#ip route 192.168.35.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config)#ip route 192.168.30.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config)#ip route 192.168.25.0 255.255.255.0 209.128.16.2
+   Router0   ROUTEUR-LAN-G(config)#ip route 10.10.10.0 255.255.255.0 209.128.16.2
+   Switch2   SW-3>en
+   Switch2   SW-3#show vlan
+   Switch2   SW-3#config t
+   Switch2   SW-3(config)#int f0/1-2
+   Switch2   SW-3(config)#int ran f0/1-2
+   Switch2   SW-3(config-if-range)#switchport mode trunk
+   Switch2   SW-3(config-if-range)#ex
+   Switch2   SW-3(config)#int ran f0/1-2
+   Switch2   SW-3(config-if-range)#switchport mode access
+   Switch2   SW-3(config-if-range)#switchport access vlan 20
+   Router5   ROUTER-CONTROLEUR>en
+   Router5   ROUTER-CONTROLEUR#wr
+   Router5   ROUTER-CONTROLEUR>en
+   Router8   Router>en
+   Router8   Router#config t
+   Router8   Router(config)#int f1/0
+   Router8   Router(config-if)#ip add 172.16.20.1 255.255.255.0
+   Router8   Router(config-if)#no shut
+   Router5   ROUTER-CONTROLEUR#config t
+   Router5   ROUTER-CONTROLEUR(config)#int f1/0
+   Router5   ROUTER-CONTROLEUR(config-if)#ip add 172.16.20.2 255.255.255.0
+   Router5   ROUTER-CONTROLEUR(config-if)#no shut
+   Router10   Router>en
+   Router10   Router#config t
+   Router10   Router(config)#int f6/0
+   Router10   Router(config-if)#ip add 172.16.20.1 255.255.255.0
+   Router10   Router(config-if)#no shut
+   Switch3   Switch>en
+   Switch3   Switch#config t
+   Switch3   Switch(config)#vlan 70
+   Switch3   Switch(config-vlan)#name oloumi
+   Switch3   Switch(config-vlan)#ex
+   Switch3   Switch(config)#vlan 75
+   Switch3   Switch(config-vlan)#name oloumiVoip
+   Switch11   Switch>en
+   Switch11   Switch#config t
+   Switch11   Switch(config)#vlan 80
+   Switch11   Switch(config-vlan)#name sni
+   Switch11   Switch(config-vlan)#ex
+   Switch11   Switch(config)#vlan 85
+   Switch11   Switch(config-vlan)#name sniVoip
+   Switch11   Switch(config-vlan)#ex
+   Switch10   Switch>en
+   Switch10   Switch#config t
+   Switch10   Switch(config)#vlan 90
+   Switch10   Switch(config-vlan)#name petro
+   Switch10   Switch(config-vlan)#ex
+   Switch10   Switch(config)#vlan 95
+   Switch10   Switch(config-vlan)#name petroVoip
+   Switch10   Switch(config-vlan)#ex
+   Switch10   Switch(config)#int range f0/9-10
+   Switch10   Switch(config-if-range)#switchport mode access
+   Switch10   Switch(config-if-range)#switchport vlan 90
+   Switch10   Switch(config-if-range)#switchport access vlan 90
+   Switch10   Switch(config-if-range)#ex
+   Switch10   Switch(config)#int f0/11
+   Switch10   Switch(config-if)#switchport mode access
+   Switch10   Switch(config-if)#switchport voice vlan 95
+   Switch11   Switch(config)#ex
+   Switch11   Switch#i
+   Switch3   Switch(config-vlan)#ex
+   Switch3   Switch(config)#int f0/9-10
+   Switch3   Switch(config)#int ran f0/9-10
+   Switch3   Switch(config-if-range)#switchport mode access
+   Switch3   Switch(config-if-range)#switchport access vlan 70
+   Switch3   Switch(config-if-range)#ex
+   Switch3   Switch(config)#int f0/11
+   Switch3   Switch(config-if)#switchport mode access
+   Switch3   Switch(config-if)#switchport voice vlan 75
+   Switch11   Switch#config t
+   Switch11   Switch(config)#int range f0/9-10
+   Switch11   Switch(config-if-range)#switchport mode access
+   Switch11   Switch(config-if-range)#switchport access vlan 80
+   Switch11   Switch(config-if-range)#ex
+   Switch11   Switch(config)#int f0/11
+   Switch11   Switch(config-if)#switchport mode access 
+   Switch11   Switch(config-if)#switchport voice vlan 85
+   Multilayer Switch1   Switch>en
+   Multilayer Switch1   Switch#config t
+   Multilayer Switch1   Switch(config)#vlan 70
+   Multilayer Switch1   Switch(config-vlan)#name oloumi
+   Multilayer Switch1   Switch(config-vlan)#ex
+   Multilayer Switch1   Switch(config)#vlan 75
+   Multilayer Switch1   Switch(config-vlan)#name oloumiVoip
+   Multilayer Switch1   Switch(config-vlan)#ex
+   Multilayer Switch1   Switch(config)#vlan 80
+   Multilayer Switch1   Switch(config-vlan)#name sni
+   Multilayer Switch1   Switch(config-vlan)#e
+   Multilayer Switch1   Switch(config)#vlan 85
+   Multilayer Switch1   Switch(config-vlan)#name sniVoip
+   Multilayer Switch1   Switch(config-vlan)#ex
+   Multilayer Switch1   Switch(config)#vlan 90
+   Multilayer Switch1   Switch(config-vlan)#name petro
+   Multilayer Switch1   Switch(config-vlan)#ex
+   Multilayer Switch1   Switch(config)#vlan 95
+   Multilayer Switch1   Switch(config-vlan)#name petroVoip
+   Multilayer Switch1(2)   Switch>en
+   Multilayer Switch1(2)   Switch#config t
+   Multilayer Switch1(2)   Switch(config)#vlan 7
+   Multilayer Switch1(2)   Switch(config-vlan)#ex
+   Multilayer Switch1(2)   Switch(config)#no vlan 7
+   Multilayer Switch1(2)   Switch(config)#vlan 70
+   Multilayer Switch1(2)   Switch(config-vlan)#name oloumi
+   Multilayer Switch1(2)   Switch(config-vlan)#ex
+   Multilayer Switch1(2)   Switch(config)#vlan 75
+   Multilayer Switch1(2)   Switch(config-vlan)#namz oloumiVoip
+   Multilayer Switch1(2)   Switch(config-vlan)#name oloumiVoip
+   Multilayer Switch1(2)   Switch(config-vlan)#ex
+   Multilayer Switch1(2)   Switch(config)#vlan 80
+   Multilayer Switch1(2)   Switch(config-vlan)#name sni
+   Multilayer Switch1(2)   Switch(config-vlan)#vlan 85
+   Multilayer Switch1(2)   Switch(config-vlan)#name sniVoip
+   Multilayer Switch1(2)   Switch(config-vlan)#ex
+   Multilayer Switch1(2)   Switch(config)#vlan 90
+   Multilayer Switch1(2)   Switch(config-vlan)#name petro
+   Multilayer Switch1(2)   Switch(config-vlan)#ex
+   Multilayer Switch1(2)   Switch(config)#vlan 95
+   Multilayer Switch1(2)   Switch(config-vlan)#name petroVoip
+   Multilayer Switch1   Switch(config-vlan)#ex
+   Multilayer Switch1   Switch(config)#int vlan 70
+   Multilayer Switch1   Switch(config-if)#ip add 172.16.70.99 255.255.255.0
+   Multilayer Switch1   Switch(config-if)#no sht
+   Multilayer Switch1   Switch(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#ex
+   Multilayer Switch1   Switch(config)#int vlan 80
+   Multilayer Switch1   Switch(config-if)#ip add 172.16.80.99 255.255.255.0
+   Multilayer Switch1   Switch(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#int vlan 90
+   Multilayer Switch1   Switch(config-if)#ip add 172.16.90.99 255.255.255.0
+   Multilayer Switch1   Switch(config-if)#no shut
+   Multilayer Switch1(2)   Switch(config-vlan)#ex
+   Multilayer Switch1(2)   Switch(config)#int vlan 70
+   Multilayer Switch1(2)   Switch(config-if)#ip add 172.16.70.99 255.255.255.0
+   Multilayer Switch1(2)   Switch(config-if)#no shut
+   Multilayer Switch1(2)   Switch(config-if)#ex
+   Multilayer Switch1(2)   Switch(config)#int vlan 80
+   Multilayer Switch1(2)   Switch(config-if)#ip add 172.16.80.99 255.255.255.0
+   Multilayer Switch1(2)   Switch(config-if)#no shut
+   Multilayer Switch1(2)   Switch(config-if)#int vlan 90
+   Multilayer Switch1(2)   Switch(config-if)#int vlan 
+   Multilayer Switch1(2)   Switch(config-if)#ip add 172.16.90.99 255.255.255.0
+   Multilayer Switch1(2)   Switch(config-if)#no shut
+   Multilayer Switch1(2)   Switch(config-if)#ex
+   Multilayer Switch1(2)   Switch(config)#ip route 
+   Multilayer Switch1(2)   Switch(config)#ip routing
+   Multilayer Switch1(2)   Switch(config)#ip dhcp pool oloumi
+   Multilayer Switch1(2)   Switch(dhcp-config)#network 172.16.70.0 255.255.255.0
+   Multilayer Switch1(2)   Switch(dhcp-config)#default-router 172.16.70.99
+   Multilayer Switch1(2)   Switch(dhcp-config)#ex
+   Multilayer Switch1(2)   Switch(config)#ip dhcp pool sn
+   Multilayer Switch1(2)   Switch(dhcp-config)#ip dhcp pool sni
+   Multilayer Switch1(2)   Switch(dhcp-config)#default-router 172.16.80.99
+   Multilayer Switch1(2)   Switch(dhcp-config)#network 172.16.80.0 255.255.255.0
+   Multilayer Switch1(2)   Switch(dhcp-config)#ex
+   Multilayer Switch1(2)   Switch(config)#ip dhcp pool petro
+   Multilayer Switch1(2)   Switch(dhcp-config)#network 172.16.90.0 255.255.255.0
+   Multilayer Switch1(2)   Switch(dhcp-config)#default-router 172.16.90.99
+   Switch3   Switch(config-if)#*
+   Switch3   Switch(config-if)#ex
+   Switch3   Switch(config)#int range f0/1-2
+   Switch3   Switch(config-if-range)#switchport mode access
+   Switch3   Switch(config-if-range)#switchport mode trunk
+   Switch3   Switch(config-if-range)#switchort trunk allowed vlan 70,75*
+   Switch3   Switch(config-if-range)#switchport trunk allowed vlan 70,75*
+   Switch3   Switch(config-if-range)#switchport trunk allowed vlan 70,75
+   Switch11   Switch(config-if)#ex
+   Switch11   Switch(config)#int range f0/1-2
+   Switch11   Switch(config-if-range)#switchport mode access
+   Switch11   Switch(config-if-range)#switchportmode trunk
+   Switch11   Switch(config-if-range)#switchport mode trunk
+   Switch11   Switch(config-if-range)#swtchport trunk allowed vlan 80,85
+   Switch11   Switch(config-if-range)#switchport trunk allowed vlan 80,85
+   Switch10   Switch(config-if)#int range f0/1-2
+   Switch10   Switch(config-if-range)#switchport mode access
+   Switch10   Switch(config-if-range)#switchport trunk allowe vlan 90,95
+   Multilayer Switch1   Switch(config-if)#ex
+   Multilayer Switch1   Switch(config)#int range gigabitEthernet 1/0/1-1/0/3
+   Multilayer Switch1   Switch(config)#int range gigabitEthernet 1/0/1-3
+   Multilayer Switch1   Switch(config-if-range)#switchport mode access
+   Multilayer Switch1   Switch(config-if-range)#switchport mode trunk
+   Multilayer Switch1   Switch(config-if-range)#switchport trunk allowed vlan 70,80,90,75,85,95
+   Multilayer Switch1(2)   Switch(dhcp-config)#end
+   Multilayer Switch1(2)   Switch#config t
+   Multilayer Switch1(2)   Switch(config)#int range gigabitEthernet 1/0/1-3
+   Multilayer Switch1(2)   Switch(config-if-range)#switchport mode access
+   Multilayer Switch1(2)   Switch(config-if-range)#switchport mode trunk
+   Multilayer Switch1(2)   Switch(config-if-range)#switchport trunk allowed vlan 70,80,90,75,85,95
+   Multilayer Switch1   Switch(config-if-range)#ex
+   Multilayer Switch1   Switch(config)#do shw run
+   Multilayer Switch1   Switch(config)#do show run
+   Switch5   A9>en
+   Switch5   A9#config t
+   Switch5   A9(config)#do show run
+   Switch10   Switch(config-if-range)#ex
+   Switch10   Switch(config)#spanning-tree mode rapid-pvst
+   Switch10   Switch(config)#spanning-tree ?
+   Switch10   Switch(config)#spanning-tree portfast 
+   Switch10   Switch(config)#spanning-tree portfast bpduguard 
+   Switch10   Switch(config)#spanning-tree portfast bpduguard default 
+   Switch10   Switch(config)#spanning-tree extend system-id
+   Switch11   Switch(config-if-range)#ex
+   Switch11   Switch(config)#spanning-tree mode rapid-pvst
+   Switch11   Switch(config)#spanning-tree mode ?
+   Switch11   Switch(config)#spanning-tree?
+   Switch11   Switch(config)#spanning-tree ?
+   Switch11   Switch(config)#spanning-tree portfast options
+   Switch11   Switch(config)#spanning-tree portfast ?
+   Switch11   Switch(config)#spanning-tree portfast bpduguard default 
+   Switch3   Switch(config-if-range)#ex
+   Switch3   Switch(config)#spanning-tree portfast bpduguard default 
+   Switch3   Switch(config)#spanning-tree ?
+   Switch3   Switch(config)#spanning-tree?
+   Switch3   Switch(config)#spanning-tree mode rapid-pvst
+   Multilayer Switch1(2)   Switch(config-if-range)#ex
+   Multilayer Switch1(2)   Switch(config)#spanning-tree mode rapid-pvst
+   Multilayer Switch1(2)   Switch(config)#spanning-tree portfast bpduguard default 
+   Multilayer Switch1   Switch(config)#spanning-tree mode rapid-pvst
+   Multilayer Switch1   Switch(config)#spanning-tree ?
+   Multilayer Switch1   Switch(config)#spanning-tree portfast bpduguard default 
+   Multilayer Switch1(2)   Switch(config)#e
+   Multilayer Switch1(2)   Switch(config)#ip routing
+   Multilayer Switch1   Switch(config)#ip routing
+   Multilayer Switch1(2)   Switch(config)#do shw run
+   Multilayer Switch1(2)   Switch(config)#do show run
+   Multilayer Switch1(2)   Switch(config)#no ip dhcp pool sn
+   Multilayer Switch1(2)   Switch(config)#do show run
+   Multilayer Switch1   Switch(config)#ip dhcp pool petro
+   Multilayer Switch1   Switch(dhcp-config)#network 172.16.90.0 255.255.255.0
+   Multilayer Switch1   Switch(dhcp-config)#default-router 172.16.90.99
+   Multilayer Switch1(2)   Switch(config)#do show run
+   Switch10   Switch>*
+   Switch10   Switch>en
+   Switch10   Switch#config t
+   Switch10   Switch(config)#in range f0/9-10
+   Switch10   Switch(config-if-range)#switchport mode access
+   Switch10   Switch(config-if-range)#switchport mode trunk
+   Switch10   Switch(config-if-range)#switchport mode access
+   Switch10   Switch(config-if-range)#switchport access vlan 99
+   Switch10   Switch(config-if-range)#switchport access vlan 90
+   Switch10   Switch(config-if-range)#ex
+   Switch10   Switch(config)#int f0/11
+   Switch10   Switch(config-if)#switchport mode access 
+   Switch10   Switch(config-if)#switchport voice vlan 95
+   Multilayer Switch1   Switch>en
+   Multilayer Switch1   Switch#show run
+   Multilayer Switch1(2)   Switch>en
+   Multilayer Switch1(2)   Switch#show run
+   Switch10   Switch>en
+   Switch10   Switch#show run
+   Switch10   Switch#config t
+   Switch10   Switch(config)#int f0/2
+   Switch10   Switch(config-if)#speed 1000
+   Switch10   Switch(config-if)#speed ?
+   Switch10   Switch(config-if)#speed 100
+   Switch10   Switch(config-if)#ex
+   Switch10   Switch(config)#do show int brief
+   Switch10   Switch(config)#ex
+   Switch10   Switch#int 
+   Switch10   Switch#show int f0/2
+   Switch10   Switch#show int f0/2 brief
+   Switch10   Switch#show int f0/2 brief
+   Switch10   Switch#show int f0/2
+   Switch3   Switch>en
+   Switch3   Switch#show int f0/2
+   Switch10   Switch#show int f0/2 brief
+   Switch10   Switch#show int brief
+   Switch10   Switch#show interfaces fastEthernet brief
+   Switch10   Switch#show interfaces 
+   Multilayer Switch1(2)   Switch>en
+   Multilayer Switch1(2)   Switch#sh ip int brief
+   Multilayer Switch1(2)   Switch#sh run
+   Multilayer Switch1(2)   Switch#conf t
+   Multilayer Switch1(2)   Switch(config)#int g1/0/4
+   Multilayer Switch1(2)   Switch(config-if)#no shut
+   Switch12   Switch>en
+   Switch12   Switch#conf t
+   Switch12   Switch(config)#int f0/2
+   Switch12   Switch(config-if)#switchport mode access 
+   Switch12   Switch(config-if)#exit
+   Switch12   Switch(config)#vlan 90
+   Switch12   Switch(config-vlan)#name petro
+   Switch12   Switch(config-vlan)#exit
+   Switch12   Switch(config)#int f0/2
+   Switch12   Switch(config-if)#switchport mode access 
+   Switch12   Switch(config-if)#switchport access vlan 90
+   Switch12   Switch(config-if)#exit
+   Switch12   Switch(config)#int f0/1
+   Switch12   Switch(config-if)#switchport mode trunk 
+   Switch12   Switch(config-if)#exit
+   Multilayer Switch1(2)   Switch(config-if)#exit
+   Multilayer Switch1(2)   Switch(config)#int g1/0/4
+   Multilayer Switch1(2)   Switch(config-if)#switchport 
+   Multilayer Switch1(2)   Switch(config-if)#exit
+   Multilayer Switch1(2)   Switch(config)#int g1/0/4
+   Multilayer Switch1(2)   Switch(config-if)#switchport trunk encapsulation dot1q
+   Multilayer Switch1(2)   Switch(config-if)#switchport mode trunk 
+   Multilayer Switch1(2)   Switch(config-if)#exit
+   Multilayer Switch1(2)   Switch(config)#do sh run
+   Multilayer Switch1(2)   Switch(config)#int g1/0/3
+   Multilayer Switch1(2)   Switch(config-if)#switchport mode trunk 
+   Multilayer Switch1   Switch>en
+   Multilayer Switch1   Switch#conf t
+   Multilayer Switch1   Switch(config)#int g1/0/3
+   Multilayer Switch1   Switch(config-if)#switchport mode trunk 
+   Switch10   Switch>en
+   Switch10   Switch#conf t
+   Switch10   Switch(config)#int r f0/1-2
+   Switch10   Switch(config-if-range)#switchport mode trunk 
+   Multilayer Switch1   Switch(config-if)#exit
+   Multilayer Switch1   Switch(config)#int r g/1/1/3-1/1/4
+   Multilayer Switch1   Switch(config)#int r g/1/1/3-4
+   Multilayer Switch1   Switch(config)#int r g1/1/3-4
+   Multilayer Switch1   Switch(config-if-range)#etherchannel ?
+   Multilayer Switch1   Switch(config-if-range)#?
+   Multilayer Switch1   Switch(config-if-range)#CHannel-group ?
+   Multilayer Switch1   Switch(config-if-range)#CHannel-group 1 mode active 
+   Multilayer Switch1   Switch(config-if-range)#?
+   Multilayer Switch1   Switch(config-if-range)#speed ?
+   Multilayer Switch1   Switch(config-if-range)#speed 100 ?
+   Multilayer Switch1   Switch(config-if-range)#speed 100 
+   Multilayer Switch1   Switch(config-if-range)#speed auto
+   Multilayer Switch1   Switch(config-if-range)#exit
+   Multilayer Switch1   Switch(config)#int port-channel 1
+   Multilayer Switch1   Switch(config-if)#switchport mode trunk 
+   Multilayer Switch1   Switch(config-if)#exit
+   Multilayer Switch1(2)   Switch(config-if)#exit
+   Multilayer Switch1(2)   Switch(config)#int r g1/1/3-4
+   Multilayer Switch1(2)   Switch(config-if-range)#channel-group 1 mode active 
+   Multilayer Switch1(2)   Switch(config-if-range)#exit
+   Multilayer Switch1(2)   Switch(config)#int port-channel 1
+   Multilayer Switch1(2)   Switch(config-if)#switchport mode trunk 
+   Multilayer Switch1(2)   Switch(config-if)#exit
+   Switch10   Switch(config-if-range)#ex
+   Switch10   Switch(config)#spanning-tree vlan 90 root primary 
+   Switch11   Switch>en
+   Switch11   Switch#config t
+   Switch11   Switch(config)#spanning-tree vlan 80 root primary
+   Switch3   Switch>en
+   Switch3   Switch#config t
+   Switch3   Switch(config)#spanning-tree vlan 70 root primary
+   Router10(2)   Router>en
+   Router10(2)   Router#config t
+   Router10(2)   Router(config)#int f0/0
+   Router10(2)   Router(config-if)#no shut
+   Router10(2)   Router(config-if)#ex
+   Router10(2)   Router(config)#int f0/0.75
+   Router10(2)   Router(config-subif)#ip ad 172.17.75.1 255.255.255.0
+   Router10(2)   Router(config-subif)#encapsulation dot1Q 75
+   Router10(2)   Router(config-subif)#ip ad 172.17.75.1 255.255.255.0
+   Router10(2)   Router(config-subif)#ex
+   Switch3   Switch(config)#do show vlan
+   Router10(2)   Router(config)#ip dhcp pool oloumiVoip 
+   Router10(2)   Router(dhcp-config)#network 172.17.75.0 255.255.255.0
+   Router10(2)   Router(dhcp-config)#default-router 172.17.75.1
+   Router10(2)   Router(dhcp-config)#option 150?
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#show run
+   Router10(2)   Router(dhcp-config)#option 150 ip 172.17.75.1
+   Router10(2)   Router(dhcp-config)#ex
+   Router10(2)   Router(config)#service telephny
+   Router10(2)   Router(config)#telephony-service
+   Router10(2)   Router>en
+   Router10(2)   Router#config t
+   Router10(2)   Router(config)#int f0/0.75
+   Router10(2)   Router(config-subif)#no ip add 172.17.75.1 255.255.255.0
+   Router10(2)   Router(config-subif)#ex
+   Router10(2)   Router(config)#no ip dhcp pool oloumieVoip
+   Router10(2)   Router(config)#ex
+   Router10(2)   Router#d
+   Router10(2)   Router#show run
+   Router10(2)   Router#config t
+   Router10(2)   Router(config)#no ip dhcp pool oloumiVoip
+   Router10(2)   Router(config)#do show run
+   Router6   Router>en
+   Router6   Router#configt
+   Router10(1)   Router>en
+   Router10(1)   Router#config t
+   Router10(1)   Router(config)#int f5/0
+   Router10(1)   Router(config-if)#ip add 13.13.13.2 255.255.255.0
+   Router10(1)   Router(config-if)#no shut
+   Multilayer Switch1   Switch(config)#int g1/1/2
+   Multilayer Switch1   Switch(config-if)#no switchport 
+   Multilayer Switch1   Switch(config-if)#ip add 13.13.13.1 255.255.255.0
+   Multilayer Switch1   Switch(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#no shut
+   Router10(1)   Router(config-if)#ex
+   Router10(1)   Router(config)#do show ip interface brief
+   Router10(1)   Router(config)#int f5/0
+   Router10(1)   Router(config-if)#no shut
+   Router10(1)   Router(config-if)#ex
+   Router10(1)   Router(config)#int f5/0
+   Router10(1)   Router(config-if)#int fex
+   Router10(1)   Router(config-if)#ex
+   Router10(1)   Router(config)#do show ip interface brief
+   Router10(1)   Router(config)#int f7/0
+   Router10(1)   Router(config-if)#ip add 11.11.11.1 255.255.255.0
+   Router10(1)   Router(config-if)#no shut
+   Router10   Router>en
+   Router10   Router#config t
+   Router10   Router(config)#int f7/0
+   Router10   Router(config-if)#ip add 11.11.11.2 255.255.255.0
+   Router10   Router(config-if)#no shut
+   Router10(1)   Router(config-if)#ex
+   Router10(1)   Router(config)#int f5/0
+   Router10(1)   Router(config-if)#no shutdown 
+   Router10(1)   Router(config-if)#shutdown 
+   Router10(1)   Router(config-if)#no shutdown 
+   Router10(2)   Router(config)#ex
+   Router10(2)   Router#show version
+   Router10(2)   Router#config t
+   Router10(2)   Router(config)#int f6/0
+   Router10(2)   Router(config-if)#no shut
+   Router10(2)   Router(config-if)#ex
+   Router10(2)   Router(config)#int f4/0
+   Router10(2)   Router(config-if)#no shut
+   Router10   Router(config-if)#ex
+   Router10   Router(config)#int f5/0
+   Router10   Router(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#ex
+   Multilayer Switch1   Switch(config)#int g1/1/1
+   Multilayer Switch1   Switch(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#no switchport 
+   Multilayer Switch1   Switch(config-if)#no shut
+   Router8   Router>en
+   Router8   Router#int f1/0
+   Router8   Router#configure terminal 
+   Router8   Router(config)#int f1/0
+   Router8   Router(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#ex
+   Multilayer Switch1   Switch(config)#int g1/0/9
+   Multilayer Switch1   Switch(config-if)#no switchport 
+   Multilayer Switch1   Switch(config-if)#no shut
+   Router10(1)   Router(config-if)#ex
+   Router10(1)   Router(config)#int f0/0
+   Router10(1)   Router(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#int g1/1/2
+   Multilayer Switch1   Switch(config-if)#no ip add 13.13.13.1 255.255.255.0
+   Multilayer Switch1   Switch(config-if)#int g1/0/9
+   Multilayer Switch1   Switch(config-if)#ip add 13.13.13.1 255.255.255.0
+   Router10(1)   Router(config-if)#ex
+   Router10(1)   Router(config)#int f5/0
+   Router10(1)   Router(config-if)#no ip add 13.13.13.2 255.255.255.0
+   Router10(1)   Router(config-if)#int f0/0
+   Router10(1)   Router(config-if)#ip add 13.13.13.2 255.255.255.0
+   Multilayer Switch1(2)   Switch>en
+   Multilayer Switch1(2)   Switch#config t
+   Multilayer Switch1(2)   Switch(config)#int g1/0/9
+   Multilayer Switch1(2)   Switch(config-if)#ip add 14.14.14.1 255.255.255.0
+   Multilayer Switch1(2)   Switch(config-if)#no switchport 
+   Multilayer Switch1(2)   Switch(config-if)#ip add 14.14.14.1 255.255.255.0
+   Router10(2)   Router(config-if)#int f0/0
+   Router10(2)   Router(config-if)#ip add 14.14.14.2 255.255.255.0
+   Router10(2)   Router(config-if)#no sht
+   Router10(2)   Router(config-if)#int f4/0
+   Router10(2)   Router(config-if)#ip add 12.12.12.1 255.255.255.0
+   Router10(2)   Router(config-if)#no shut
+   Router10   Router(config-if)#ip add 12.12.12.1 255.255.255.0
+   Router10(2)   Router(config-if)#ex
+   Router10(2)   Router(config)#int f0/1
+   Router10(2)   Router(config)#int f1/0
+   Router10(2)   Router(config-if)#ip add 19.19.19.2 255.255.255.0
+   Router10(2)   Router(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#int g1/0/10
+   Multilayer Switch1   Switch(config-if)#no switchport 
+   Multilayer Switch1   Switch(config-if)#ip add 19.19.19.1 255.255.255.0
+   Multilayer Switch1   Switch(config-if)#no shut
+   Router10(1)   Router(config-if)#iny f0/1
+   Router10(1)   Router(config-if)#int f1/0
+   Router10(1)   Router(config-if)#ip add 20.20.20.2 255.255.255.0
+   Router10(1)   Router(config-if)#no shut
+   Multilayer Switch1(2)   Switch(config-if)#int g1/0/10
+   Multilayer Switch1(2)   Switch(config-if)#no switchport 
+   Multilayer Switch1(2)   Switch(config-if)#ip add 20.20.20.20.1 255.255.255.0
+   Multilayer Switch1(2)   Switch(config-if)#ip add 20.20.20.1 255.255.255.0
+   Router6   Router#config t
+   Router6   Router(config)#int f0/0.75
+   Router6   Router(config-subif)#ip add 172.16.75.1 255.255.255.0
+   Router6   Router(config-subif)#encapsulation dot1Q 75
+   Router6   Router(config-subif)#ip add 172.16.75.1 255.255.255.0
+   Router6   Router(config-subif)#ex
+   Router6   Router(config)#int f/
+   Router6   Router(config)#int f/
+   Router6   Router(config)#int f0/0
+   Router6   Router(config-if)#no shut
+   Router6   Router(config-if)#ex
+   Router6   Router(config)#int f1/0
+   Router6   Router(config-if)#ex
+   Router6   Router(config)#int f0/1
+   Router6   Router(config-if)#ex
+   Router6   Router(config)#int f0/1.85
+   Router6   Router(config-subif)#encapsulation dot1Q 85
+   Router6   Router(config-subif)#ip add 172.16.85.1 255.255.255.0
+   Router6   Router(config-subif)#ex
+   Router6   Router(config)#int f0/1
+   Router6   Router(config-if)#no shut
+   Router6   Router(config-if)#ex
+   Router6   Router(config)#telephony-service 
+   Router6   Router(config-telephony)#max-ephones 4
+   Router6   Router(config-telephony)#max-dn
+   Router6   Router(config-telephony)#max-dn 4
+   Router6   Router(config-telephony)#ip source-address 172.16.75.1
+   Router6   Router(config-telephony)#ip source-address 172.16.75.1 port 2000
+   Router6   Router(config-telephony)#ip source-address 172.16.85.1 port 2000
+   Router6   Router(config-telephony)#auto assign 1 to 4
+   Router6   Router(config-telephony)#ip source-address 172.16.95.1 port 2000
+   Router6   Router(config-telephony)#ex
+   Router6   Router(config)#ip dhcp pool oloumiVoip
+   Router6   Router(dhcp-config)#network 172.16.75.0 255.255.255.0
+   Router6   Router(dhcp-config)#default-router 172.16.75.1
+   Router6   Router(dhcp-config)#option 150 ip 172.16.75.1
+   Router6   Router(dhcp-config)#ex
+   Router6   Router(config)#ip dhcp pool sniVoip
+   Router6   Router(dhcp-config)#network 172.16.85.0 255.255.255.0
+   Router6   Router(dhcp-config)#option 150 ip 172.16.85.1
+   Router6   Router(dhcp-config)#ex
+   Router6   Router(config)#ip dhcp pool sniVoip
+   Router6   Router(dhcp-config)#default-router 172.16.85.1
+   Router6   Router(dhcp-config)#ip dhcp pool petroVoip
+   Router6   Router(dhcp-config)#network 172.16.95.0 255.255.255.0
+   Router6   Router(dhcp-config)#default-router 172.16.95.1
+   Router6   Router(dhcp-config)#option 150 ip 172.16.95.1
+   Switch3   Switch>en
+   Switch3   Switch#config t
+   Switch3   Switch(config)#int f0/11
+   Switch3   Switch(config-if)#switchport mode trunk
+   Switch11   Switch>en
+   Switch11   Switch#config t
+   Switch11   Switch(config)#int f0/11
+   Switch11   Switch(config-if)#switchport mode trunk
+   Switch10   Switch>en
+   Switch10   Switch#config t
+   Switch10   Switch(config)#int f0/11
+   Switch10   Switch(config-if)#switchport mode trunk
+   Multilayer Switch1   Switch(config-if)#int g1/0/4
+   Multilayer Switch1   Switch(config-if)#switchport mode trunk
+   Multilayer Switch1(2)   Switch(config-if)#int g1/0/5
+   Multilayer Switch1(2)   Switch(config-if)#switchport mode trunk
+   Router6   Router(dhcp-config)#number?
+   Router6   Router(dhcp-config)#?
+   Router2   ROUTER-LAN-D>en
+   Router2   ROUTER-LAN-D#show run
+   Router6   Router(dhcp-config)#ephone-dn
+   Router6   Router(dhcp-config)#ephone-dn 1
+   Router6   Router(config-ephone-dn)#number 600
+   Router6   Router(config-ephone-dn)#ephone-dn 2
+   Router6   Router(config-ephone-dn)#ephone-dn
+   Router6   Router(config-ephone-dn)#number 610
+   Router6   Router(config-ephone-dn)#ephone-dn 3
+   Router6   Router(config-ephone-dn)#number 611
+   Router6   Router(config-ephone-dn)#ephone-dn 4
+   Router6   Router(config-ephone-dn)#ephone-dn 4
+   Router6   Router(config-ephone-dn)#number 612
+   Multilayer Switch1   Switch(config-if)#ex
+   Multilayer Switch1   Switch(config)#show vlan
+   Multilayer Switch1   Switch(config)#do show vlan
+   Multilayer Switch1(2)   Switch(config-if)#switchport mode access
+   Multilayer Switch1(2)   Switch(config-if)#switchport mode trunk
+   Router6   Router(config-ephone-dn)#end
+   Router6   Router#wr
+   Router6   Router#show run
+   Multilayer Switch1(2)   Switch(config-if)#ex
+   Multilayer Switch1(2)   Switch(config)#do qshow vlan
+   Multilayer Switch1(2)   Switch(config)#do show vlan
+   Router6   Router#config t
+   Router6   Router(config)#telephony-service 
+   Router6   Router(config-telephony)#ip source-address 172.16.85.1 port 2000
+   Router6   Router(config-telephony)#end
+   Router6   Router#show run
+   Router6   Router#config t
+   Router6   Router(config)#int f0/0.95
+   Router6   Router(config-subif)#encapsulation dot1Q 95
+   Router6   Router(config-subif)#ip add 172.16.95.1 255.255.255.0
+   Router6   Router(config-subif)#no shut
+   Switch3   Switch(config-if)#end
+   Switch3   Switch#show run
+   Router6   Router(config-subif)#end
+   Router6   Router#show run
+   Router0   ROUTEUR-LAN-G>en
+   Router0   ROUTEUR-LAN-G#sh run
+   Router10(1)   Router(config-if)#end
+   Router10(1)   Router#sh ip int brief
+   Multilayer Switch1   Switch(config)#end
+   Multilayer Switch1   Switch#sh ip int brief
+   Multilayer Switch1   Switch#conf t
+   Multilayer Switch1   Switch(config)#ip route 0.0.0.0 0.0.0.0 13.13.13.2
+   Router10(1)   Router#conf t
+   Router10(1)   Router(config)#ip route 0.0.0.0 0.0.0.0 13.13.13.1
+   Router10(1)   Router(config)#end
+   Router10(1)   Router#sh ip route
+   Router10(2)   Router(config-if)#end
+   Router10(2)   Router#sh ip int brief
+   Multilayer Switch1   Switch(config)#ip route 0.0.0.0 0.0.0.0 19.19.19.2
+   Router10(2)   Router#conf t
+   Router10(2)   Router(config)#ip route 0.0.0.0 0.0.0.0 19.19.19.1
+   Router10(2)   Router(config)#end
+   Router10(2)   Router#sh ip route
+   Multilayer Switch1(2)   Switch(config)#end
+   Multilayer Switch1(2)   Switch#sh ip int brief
+   Router10(1)   Router#conf t
+   Router10(1)   Router(config)#ip route 0.0.0.0 0.0.0.0 20.20.20.1
+   Multilayer Switch1(2)   Switch#conf t
+   Multilayer Switch1(2)   Switch(config)#ip route 0.0.0.0 0.0.0.0 20.20.20.2
+   Multilayer Switch1(2)   Switch(config)#ip route 0.0.0.0 0.0.0.0 14.14.14.2
+   Router10(2)   Router#conf t
+   Router10(2)   Router(config)#ip route 0.0.0.0 0.0.0.0 14.14.14.1
+   Router10(2)   Router(config)#end
+   Router10(2)   Router#sh ip route
+   Multilayer Switch1(2)   Switch(config)#end
+   Multilayer Switch1(2)   Switch#sh ip route
+   Multilayer Switch1   Switch(config)#end
+   Multilayer Switch1   Switch#sh ip route
+   Multilayer Switch1   Switch#sh vlan brief
+   Multilayer Switch1   Switch#sh ?
+   Multilayer Switch1   Switch#sh 
+   Multilayer Switch1   Switch#sh vlan ?
+   Multilayer Switch1   Switch#sh run
+   Multilayer Switch1(2)   Switch#sh run
+   Multilayer Switch1   Switch#sh ip route
+   Multilayer Switch1   Switch#con f t
+   Multilayer Switch1   Switch#conf t
+   Multilayer Switch1   Switch(config)#router ospf 1
+   Multilayer Switch1   Switch(config-router)#passive-interface g1/0/1
+   Multilayer Switch1   Switch(config-router)#passive-interface g1/0/2
+   Multilayer Switch1   Switch(config-router)#passive-interface g1/0/3
+   Multilayer Switch1   Switch(config-router)#router-id 1.1.1.1
+   Multilayer Switch4   CORE1>en
+   Multilayer Switch4   CORE1#sh run
+   Router4   BACKBONE-1>en
+   Router4   BACKBONE-1#sh run
+   Multilayer Switch1   Switch(config-router)#network 13.13.13.0 0.0.0.255 area 3
+   Multilayer Switch1   Switch(config-router)#network 19.19.19.0  0.0.0.0.255 area 3
+   Multilayer Switch1   Switch(config-router)#network 19.19.19.0  0.0.0.255 area 3
+   Multilayer Switch1   Switch(config-router)#network 172.16.70.0  0.0.0.255 area 3
+   Multilayer Switch1   Switch(config-router)#network 172.16.80.0  0.0.0.255 area 3
+   Multilayer Switch1   Switch(config-router)#network 172.16.90.0  0.0.0.255 area 3
+   Multilayer Switch1(2)   Switch#conf t
+   Multilayer Switch1(2)   Switch(config)#end
+   Multilayer Switch1(2)   Switch#sh ip route 
+   Multilayer Switch1(2)   Switch#conf t
+   Multilayer Switch1(2)   Switch(config)#router ospf 1
+   Multilayer Switch1(2)   Switch(config-router)#passive-interface g1/0/1
+   Multilayer Switch1(2)   Switch(config-router)#passive-interface g1/0/2
+   Multilayer Switch1(2)   Switch(config-router)#passive-interface g1/0/3
+   Multilayer Switch1(2)   Switch(config-router)#router-id 2.2.2.2
+   Multilayer Switch1(2)   Switch(config-router)#network 14.14.14.0 0.0.0.255 area 3
+   Multilayer Switch1(2)   Switch(config-router)#network 20.20.20.0 0.0.0.255 area 3
+   Multilayer Switch1(2)   Switch(config-router)#network 172.16.70.0.0 0.0.0.255 area 3
+   Multilayer Switch1(2)   Switch(config-router)#network 172.16.70.0 0.0.0.255 area 3
+   Multilayer Switch1(2)   Switch(config-router)#network 172.16.80.0 0.0.0.255 area 3
+   Multilayer Switch1(2)   Switch(config-router)#network 172.16.90.0 0.0.0.255 area 3
+   Router10(1)   Router(config)#end
+   Router10(1)   Router#sh ip route
+   Router10(1)   Router#conf t
+   Router10(1)   Router(config)#router ospf 1
+   Router10(1)   Router(config-router)#router-id 3.3.3.3
+   Router10(1)   Router(config-router)#network 11.11.11.0 0.0.0.255 area 0
+   Router10(1)   Router(config-router)#network 13.13.13.0 0.0.0.255 area 3
+   Router10(1)   Router(config-router)#network 20.20.20.0 0.0.0.255 area 3
+   Router10(2)   Router#conf t
+   Router10(2)   Router(config)#router ospf 1
+   Router10(2)   Router(config-router)#router-id 4.4.4.4
+   Router10(2)   Router(config-router)#network 12.12.12.0 0.0.0.255 area 0
+   Router10(2)   Router(config-router)#network 14.14.14.0 0.0.0.255 area 3
+   Router10(2)   Router(config-router)#network 19.19.19.0 0.0.0.255 area 3
+   Router10(1)   Router(config-router)#end
+   Router10(1)   Router#sh ip route
+   Router10(2)   Router(config-router)#end
+   Router10(2)   Router#sh ip route
+   Multilayer Switch1   Switch(config-router)#end
+   Multilayer Switch1   Switch#sh ip route
+   Multilayer Switch1(2)   Switch(config-router)#end
+   Multilayer Switch1(2)   Switch#sh ip route
+   Router10   Router>en
+   Router10   Router#sh ip route
+   Router10   Router#conf t
+   Router10   Router(config)#router ospf 1
+   Router10   Router(config-router)#router-id 5.5.5.5
+   Router10   Router(config-router)#network 11.11.11.0 0.0.0.255 area 0
+   Router10   Router(config-router)#network 12.12.12.0 0.0.0.255 area 0
+   Router10   Router(config-router)#network 1.0 0.0.0.255 area 070.16.20.
+   Router10   Router(config-router)#network 172.16.20.0 0.0.0.255 area 0
+   Router10   Router(config-router)#end
+   Router10   Router#sh ip route
+   Router10   Router#sh ip int brief
+   Router6   Router>en
+   Router6   Router#sh ip int brief
+   Router6   Router#conf t
+   Router6   Router(config)#int f1/0
+   Router6   Router(config-if)#ip address 5.5.5.1 255.255.255.0
+   Router6   Router(config-if)#no shut
+   Router10   Router#conf t
+   Router10   Router(config)#int f4/0
+   Router10   Router(config-if)#ip address 5.5.5.2 255.255.255.0
+   Router10   Router(config-if)#no shut
+   Router6   Router(config-if)#end
+   Router6   Router#sh ip route
+   Router6   Router#wr
+   Router6   Router#conf t
+   Router6   Router(config)#router ospf 1
+   Router6   Router(config-router)#router-id 6.6.6.6
+   Router6   Router(config-router)#network 5.5.5.0 0.0.0.255 area 0
+   Router6   Router(config-router)#network 5.5.5.1 0.0.0.255 area 0
+   Router6   Router(config-router)#network 172.16.75.0 0.0.0.255 area 0
+   Router6   Router(config-router)#network 172.16.75.1 0.0.0.255 area 0
+   Router6   Router(config-router)#network 172.16.85.1 0.0.0.255 area 0
+   Router6   Router(config-router)#network 172.16.85.0 0.0.0.255 area 0
+   Router6   Router(config-router)#network 172.16.95.0 0.0.0.255 area 0
+   Router6   Router(config-router)#network 172.16.95.1 0.0.0.255 area 0
+   Router10   Router(config-if)#end
+   Router10   Router#sh ip route
+   Router10   Router#conf t
+   Router10   Router(config)#router ospf 1
+   Router10   Router(config-router)#router-id 7.7.7.7
+   Router10   Router(config-router)#router ospf 1
+   Router10   Router(config-router)#no router-id 7.7.7.7
+   Router10   Router(config-router)#router-id 5.5.5.5
+   Router10   Router(config-router)#network 5.5.5.0 0.0.0.255 area 0
+   Router10   Router(config-router)#end
+   Router6   Router(config-router)#end
+   Router6   Router#sh ip route
+   Router6   Router#sh ip route
+   Router6   Router#sh ip route
+   Router10   Router#sh ip route
+   Router6   Router#sh ip route
+   Router6   Router#ping 11.11.11.1
+   Multilayer Switch1   Switch#sh ip route
+   Multilayer Switch1   Switch#ping 5.5.5.1
+   Router5   ROUTER-CONTROLEUR>en
+   Router5   ROUTER-CONTROLEUR#config t
+   Router5   ROUTER-CONTROLEUR(config)#do show ip route
+   Router5   ROUTER-CONTROLEUR(config)#ex
+   Router5   ROUTER-CONTROLEUR#show ip int brief
+   Router5   ROUTER-CONTROLEUR#show run
+   Router1   INTERNET-RT1>en
+   Router1   INTERNET-RT1#sh ip route
+   Router5   ROUTER-CONTROLEUR#sh ip route
+   Router5   ROUTER-CONTROLEUR#conf t
+   Router5   ROUTER-CONTROLEUR(config)#end
+   Router5   ROUTER-CONTROLEUR#sh ip int brief
+   Router5   ROUTER-CONTROLEUR#conf t
+   Router5   ROUTER-CONTROLEUR(config)#router ospf 1
+   Router5   ROUTER-CONTROLEUR(config-router)#network 172.16.20.0 0.0.0.255 area 0
+   Router5   ROUTER-CONTROLEUR(config-router)#end
+   Router10   Router#sh ip route
+   Router10   Router#show run
+   Router5   ROUTER-CONTROLEUR#donc c'est bon faut juste attendre 
+   Router5   ROUTER-CONTROLEUR#sh ip route
+   Router10   Router#sh ip route
+   Router10   Router#sh ip route
+   Router10   Router#show run
+   Router5   ROUTER-CONTROLEUR#show run
+   Router5   ROUTER-CONTROLEUR#conf t
+   Router10   Router#sh ip route
+   Router10(1)   Router>EN
+   Router10(1)   Router#SH IP R
+   Router10(1)   Router#SH IP ROUT
+   Router6   Router#sh ip route
+   Router6   Router#attend un peu
+   Router6   Router#show run
+   Router10(1)   Router#shw run
+   Router10(1)   Router#show run
+   Multilayer Switch1   Switch#show run
+   Router10   Router#SH IP ROUTE
+   Router10   Router#conf t
+   Router10   Router(config)#router ospf 1
+   Router10   Router(config-router)#no network 172.16.20.0 .0.0.255 area 0
+   Router10   Router(config-router)#no network 172.16.20.0 0.0.0.255 area 0
+   Router10   Router(config-router)#network 172.16.20.0 0.0.0.255 area 5
+   Router5   ROUTER-CONTROLEUR(config)#config t
+   Router5   ROUTER-CONTROLEUR(config)#router ospf 1
+   Router5   ROUTER-CONTROLEUR(config-router)#no network 172.16.20.0 0.0.0.255 area 
+   Router5   ROUTER-CONTROLEUR(config-router)#no network 172.16.20.0 0.0.0.255 area 0
+   Router5   ROUTER-CONTROLEUR(config-router)#no network 172.16.20.0 0.0.0.255 area 
+   Router5   ROUTER-CONTROLEUR(config-router)#network 172.16.20.0 0.0.0.255 area 5
+   Router10   Router(config-router)#end
+   Router10   Router#sh ip route
+   Router10   Router#sh ip route
+   Router5   ROUTER-CONTROLEUR(config-router)#exit
+   Router5   ROUTER-CONTROLEUR(config)#end
+   Router5   ROUTER-CONTROLEUR#sh ip route
+   Router10   Router#show ip route
+   Router6   Router#show run
+   Router6   Router#config t
+   Router6   Router(config)#router ospf 1
+   Router6   Router(config-router)#no network 172.16.95.0 0.0.0.255 area 0
+   Router6   Router(config-router)#no network 172.16.85.0 0.0.0.255 area 0
+   Router6   Router(config-router)#no network 172.16.75.0 0.0.0.255 area 0
+   Router6   Router(config-router)#network 172.16.95.0 0.0.0.255 area 3
+   Router6   Router(config-router)#network 172.16.85.0 0.0.0.255 area 3
+   Router6   Router(config-router)#network 172.16.75.0 0.0.0.255 area 3
+   Router10   Router#wr
+   Router6   Router(config-router)#end
+   Router6   Router#wr
+   Router6   Router#reload
+   Router10   Router#reload 
+   Router6   Router>en
+   Router6   Router#show ip route
+   Router10   Router>en
+   Router10   Router#show ip route
+   Router10   Router#show run
+   Multilayer Switch1   Switch#show ip route
+   Multilayer Switch1(2)   Switch>en
+   Multilayer Switch1(2)   Switch#show ip route
+   Multilayer Switch1(2)   Switch#show neig
+   Multilayer Switch1(2)   Switch#show ip ospf 
+   Multilayer Switch1(2)   Switch#show ip ospf  neighbor 
+   Multilayer Switch1   Switch#show ip ospf  neighbor
+   Router6   Router#qhow run
+   Router6   Router#show ip route 
+   Router6   Router#show ip ospf  neighbor
+   Router10   Router#show run
+   Router10   Router#show ip route
+   Router6   Router#show ip ospf  neighbor
+   Router6   Router#show run
+   Router6   Router#show ip ospf  neighbor
+   Router6   Router#show ip ospf  neighbor
+   Router6   Router#show ip ospf  neighbor
+   Router6   Router#wr
+   Router6   Router#reload
+   Router10(1)   Router#show ip route
+   Router10   Router#il recommance a prendre les addresss
+   Router10   Router#show ip route
+   Router6   Router>en
+   Router6   Router#config t
+   Router6   Router(config)#show run
+   Router6   Router(config)#do shgow run
+   Router6   Router(config)#ex
+   Router6   Router#show run
+   Router6   Router#show ip route
+   Router6   Router#show run
+   Router10   Router#show ip route
+   Router10   Router#show ip route
+   Router5   ROUTER-CONTROLEUR#sh ip route
+   Router10   Router#show ip route
+   Router6   Router#show ip route
+   Router10   Router#show ip route
+   Router10   Router#show ip route
+   Router10   Router#show ip ospf  neighbor
+   Router10(1)   Router#show run
+   Router10(1)   Router#config t
+   Router10(1)   Router(config)#router ospf 1
+   Router10(1)   Router(config-router)#no router-id 3.3.3.3
+   Router10(1)   Router(config-router)#touter-id 99.99.99.1
+   Router10(1)   Router(config-router)#router-id 99.99.99.1
+   Router10(1)   Router(config-router)#end
+   Router10(1)   Router#wr
+   Router10(1)   Router#reload
+   Router10(1)   Router>en
+   Router10(1)   Router#show run
+   Router10(1)   Router#show ip route
+   Router10(1)   Router#show ip route
+   Router10(1)   Router#show ip ospf  neighbor
+   Router10(1)   Router>en
+   Router10(1)   Router#qhow ip route
+   Router10(1)   Router#show ip route
+   Router10   Router>en
+   Router10   Router#show run
+   Router10   Router#show ip route
+   Router10   Router#show ip ospf  neighbor
+   Router5   ROUTER-CONTROLEUR>en
+   Router5   ROUTER-CONTROLEUR#show ip route
+   Router5   ROUTER-CONTROLEUR#show ip ospf  neighbor
+   Router5   ROUTER-CONTROLEUR#ping  11.11.11.2
+   Router5   ROUTER-CONTROLEUR#confi gt 
+   Router5   ROUTER-CONTROLEUR#config t
+   Router5   ROUTER-CONTROLEUR(config)#ip route 0.0.0.0 0.0.0.0 172.16.20.2
+   Router5   ROUTER-CONTROLEUR(config)#ip route 0.0.0.0 255.255.255.0 172.16.20.2
+   Router5   ROUTER-CONTROLEUR(config)#ip route 0.0.0.0 255.255.255.0 172.16.20.1
+   Router5   ROUTER-CONTROLEUR(config)#ip route 0.0.0.0 0.0.0.0 172.16.20.1
+   Router5   ROUTER-CONTROLEUR(config)#ip route 11.11.11.0 255.255.255.0 172.16.20.1
+   Router10   Router#show ip route
+   Router10   Router#show ip route
+   Router10   Router#show ip route
+   Multilayer Switch1(2)   Switch>en
+   Multilayer Switch1(2)   Switch#conf t
+   Multilayer Switch1(2)   Switch(config)#no router ospf 1
+   Multilayer Switch1(2)   Switch(config)#end
+   Multilayer Switch1(2)   Switch#sh run
+   Multilayer Switch1   Switch>en
+   Multilayer Switch1   Switch#conf t
+   Multilayer Switch1   Switch(config)#no router ospf 1
+   Multilayer Switch1   Switch(config)#end
+   Multilayer Switch1   Switch#sh run
+   Router10(1)   Router>en
+   Router10(1)   Router#conf
+   Router10(1)   Router(config)#no router ospf 1
+   Router10(1)   Router(config)#end
+   Router10(1)   Router#sh run
+   Router10   Router#conf t
+   Router10   Router(config)#no router ospf 1
+   Router10   Router(config)#do sh run
+   Router6   Router>en
+   Router6   Router#conf t
+   Router6   Router(config)#no router ospf 1
+   Router6   Router(config)#end
+   Router6   Router#sh run
+   Router10(2)   Router>en
+   Router10(2)   Router#conf t
+   Router10(2)   Router(config)#no router ospf 1
+   Router10(2)   Router(config)#end
+   Router10(2)   Router#sh run
+   ASA2   ciscoasa>en
+   ASA2   ciscoasa#conf t
+   ASA2   ciscoasa(config)#do sh run
+   ASA2   ciscoasa(config)#end
+   ASA2   ciscoasa#sh run
+   ASA2   ciscoasa#conf t
+   ASA2   ciscoasa(config)#int vlaz 1
+   ASA2   ciscoasa(config)#int vlan1
+   ASA2   ciscoasa(config-if)#no ip address 192.168.1.1 255.255.255
+   ASA2   ciscoasa(config-if)#no ip address 192.168.1.1 255.255.255.0
+   ASA2   ciscoasa(config-if)#end
+   ASA2   ciscoasa#sh run
+   ASA2   ciscoasa#conf t
+   ASA2   ciscoasa(config)#no dhcpd enable inside 
+   ASA2   ciscoasa(config)#no dhcpd auto_config outside 
+   ASA2   ciscoasa(config)#end
+   ASA2   ciscoasa#sh run
+   ASA2   ciscoasa#conf t
+   ASA2   ciscoasa(config)#int vlan1
+   ASA2   ciscoasa(config-if)#no security-level 100
+   ASA2   ciscoasa(config-if)#end
+   ASA2   ciscoasa#sh run
+   ASA2   ciscoasa#conf t
+   ASA2   ciscoasa(config)#int vlan 1
+   ASA2   ciscoasa(config-if)#?
+   Router10   Router>en
+   Router10   Router#config t
+   Router10   Router(config)#int f6/0
+   Router10   Router(config-if)#media-type sfp
+   Router7   Router>en
+   Router7   Router#config t
+   Router7   Router(config)#int f2/3
+   Router7   Router(config-if)#ip add 10.10.10.1 255.255.255.0
+   Router7   Router(config-if)#int g1/2
+   Router7   Router(config)#int g1/0
+   Router7   Router(config)#do show ip int brief
+   Router7   Router(config)#int g2/1
+   Router7   Router(config-if)#ip add 192.168.100.1 255.255.255.0
+   Router7   Router(config-if)#int g2/0
+   Router7   Router(config)#int g2/1
+   Router7   Router(config-if)#media-type sfp
+   Router8   Router>en
+   Router8   Router#config t
+   Router8   Router(config)#int g2/1
+   Router8   Router(config-if)#media-type sfp
+   Router7   Router(config-if)#ex
+   Router7   Router(config)#router ospf 1
+   Router7   Router(config)#ex
+   Router7   Router#iconfig t
+   Router7   Router#config t
+   Router7   Router(config)#int g2/1
+   Router7   Router(config-if)#ip add 192.168.100.1 255.255.255.0
+   Router7   Router(config-if)#ex
+   Router7   Router(config)#do show int brief
+   Router7   Router(config)#do show int brief
+   Router7   Router(config)#do show ip int brief
+   Router7   Router(config)#int g0/1
+   Router7   Router(config-if)#ip add 192.168.100.1 255.255.255.0
+   Router7   Router(config-if)#no shut
+   Router1   INTERNET-RT1>en
+   Router1   INTERNET-RT1#config t
+   Router1   INTERNET-RT1(config)#int f0/1
+   Router1   INTERNET-RT1(config-if)#ip add 192.168.100.2 255.255.255.0
+   Router1   INTERNET-RT1(config-if)#no shut
+   Router7   rommon 1 > en
+   Router9   Router>en
+   Router9   Router#config t
+   Router9   Router(config)#int g2/1
+   Router9   Router(config-if)#media-type sfp
+   Router10   Router>en
+   Router10   Router#conf t
+   Router10   Router(config)#int f6/0
+   Router10   Router(config-if)#no shut
+   Router8   Router(config-if)#int g2/2
+   Router8   Router(config-if)#media-type sfp
+   Router9   Router(config-if)#ex
+   Router9   Router(config)#int g2/2
+   Router9   Router(config-if)#media-type sfp
+   Router9   Router(config-if)#?
+   Router9   Router(config-if)#ex
+   Router9   Router(config)#int g2/1
+   Router9   Router(config-if)#media-type rj45 
+   Router9   Router(config-if)#int g2/1
+   Router9   Router(config-if)#media-type sfp 
+   Router9   Router(config-if)#int f2/3
+   Router10   Router(config-if)#ex
+   Router10   Router(config)#do show run
+   Router10   Router(config)#router ospf 1
+   Router10   Router(config-router)#router-id 15.15.15.15
+   Router10   Router(config-router)#network 5.5.5.0 0.0.0.255 area 4
+   Router10   Router(config-router)#network 11.11.11.0 0.0.0.255 area 4
+   Router10   Router(config-router)#network 12.12.12.0 0.0.0.255 area 4
+   Router5   ROUTER-CONTROLEUR>en
+   Router5   ROUTER-CONTROLEUR#config t
+   Router5   ROUTER-CONTROLEUR(config)#do show ip route
+   Router5   ROUTER-CONTROLEUR(config)#show run
+   Router5   ROUTER-CONTROLEUR(config)#do show run
+   Router5   ROUTER-CONTROLEUR(config)#router ospf 1
+   Router5   ROUTER-CONTROLEUR(config-router)#network 172.16.20.0 0.0.0.255 area 0
+   Router5   ROUTER-CONTROLEUR(config-router)#ex
+   Router5   ROUTER-CONTROLEUR(config)#ex$
+   Router5   ROUTER-CONTROLEUR(config)#no ip route 11.11.11.0 255.255.255.0 172.16.20.1
+   Router5   ROUTER-CONTROLEUR(config)#no ip route 0.0.0.0 255.255.255.0 172.16.20.1 
+   Router5   ROUTER-CONTROLEUR(config)#no ip route 0.0.0.0 0.0.0.0 172.16.20.1 
+   Router10   Router(config-router)#network 172.16.20.0 0.0.0.255 area 0
+   Router10(1)   Router>en
+   Router10(1)   Router#config t
+   Router10(1)   Router(config)#router ospf 1
+   Router10(1)   Router(config-router)#router-id 11.11.11.11
+   Router10(1)   Router(config-router)#network 11.11.11.0 0.0.0.255 area 4
+   Router10(1)   Router(config-router)#network 13.13.13.0 0.0.0.255 area 4
+   Router10(1)   Router(config-router)#network 20.20.20.0 0.0.0.255 area 4
+   Router10(2)   Router>en
+   Router10(2)   Router#config t
+   Router10(2)   Router(config)#router ospf 1
+   Router10(2)   Router(config-router)#router-id 12.12.12.12
+   Router10(2)   Router(config-router)#network 19.19.19.0 0.0.0.255 area 4
+   Router10(2)   Router(config-router)#network 12.12.12.0 0.0.0.255 area 4
+   Router10(2)   Router(config-router)#network 14.14.14.0 0.0.0.255 area 4
+   Router10(2)   Router(config-router)#exit
+   Router10(2)   Router(config)#ex
+   Router10(2)   Router#wr
+   Router10(2)   Router#reload 
+   Multilayer Switch1   Switch>en
+   Multilayer Switch1   Switch#show ip int brief
+   Multilayer Switch1   Switch#config t
+   Multilayer Switch1   Switch(config)#router ospf 1
+   Multilayer Switch1   Switch(config-router)#router-id 13.13.13.13
+   Multilayer Switch1   Switch(config-router)#network 172.16.70.0 0.0.0.255 area 4
+   Multilayer Switch1   Switch(config-router)#network 172.16.80.0 0.0.0.255 area 4
+   Multilayer Switch1   Switch(config-router)#network 172.16.90.0 0.0.0.255 area 4
+   Multilayer Switch1   Switch(config-router)#network 13.13.13.0 0.0.0.255 area 4
+   Multilayer Switch1   Switch(config-router)#network 19.19.19.0 0.0.0.255 area 4
+   Router10(2)   Router>en
+   Router10(2)   Router#show ip route 
+   Router10(2)   Router#config t
+   Router10(2)   Router(config)#int f4/0
+   Router10(2)   Router(config-if)#ip add 12.12.12.3 255.255.255.0
+   Multilayer Switch1(2)   Switch>en
+   Multilayer Switch1(2)   Switch#config t
+   Multilayer Switch1(2)   Switch(config)#do show ip int brief
+   Multilayer Switch1(2)   Switch(config)#router ospf1
+   Multilayer Switch1(2)   Switch(config)#router ospf 1
+   Multilayer Switch1(2)   Switch(config-router)#router-id 14.14.14.14
+   Multilayer Switch1(2)   Switch(config-router)#network 172.16.70.0 0.0.0.255 area 4
+   Multilayer Switch1(2)   Switch(config-router)#network 172.16.80.0 0.0.0.255 area 4
+   Multilayer Switch1(2)   Switch(config-router)#network 172.16.90.0 0.0.0.255 area 4
+   Multilayer Switch1(2)   Switch(config-router)#network 14.14.14.0 0.0.0.255 area 4
+   Multilayer Switch1(2)   Switch(config-router)#network 20.20.20.0 0.0.0.255 area 4
+   Router6   Router>en
+   Router6   Router#config t
+   Router6   Router(config)#do show ip int brief
+   Router6   Router(config)#router ospf 1
+   Router6   Router(config-router)#router-id 5.5.5.5
+   Router6   Router(config-router)#network 5.5.5.0 0.0.0.255 area 4
+   Router6   Router(config-router)#network 172.16.75.0 0.0.0.255 area 4
+   Router6   Router(config-router)#network 172.16.85.0 0.0.0.255 area 4
+   Router6   Router(config-router)#network 172.16.95.0 0.0.0.255 area 4
+   Router6   Router(config-router)#ed
+   Router6   Router(config-router)#end
+   Router6   Router#show ip route
+   Router6   Router#reload 
+   Router10(1)   Router>en
+   Router10(1)   Router#config t
+   Router10(1)   Router(config)#int f4/0
+   Router10(1)   Router(config-if)#ip add 10.100.10.1 255.255.255.0
+   Router10(1)   Router(config-if)#no shut
+   Multilayer Switch1   Switch>en
+   Multilayer Switch1   Switch#config t
+   Multilayer Switch1   Switch(config)#int g1/1/1
+   Multilayer Switch1   Switch(config-if)#no switchport 
+   Multilayer Switch1   Switch(config-if)#ip add 10.100.10.2 255.255.255.0
+   Multilayer Switch1   Switch(config-if)#no shut
+   Multilayer Switch1   Switch(config-if)#no shut
+   Router10(1)   Router(config-if)#no shut
+   Router10(1)   Router(config-if)#shut
+   Router10(1)   Router(config-if)#no shut
+   Router5   ROUTER-CONTROLEUR>en
+   Router5   ROUTER-CONTROLEUR#show run
+   Router10   Router>en
+   Router10   Router#qhow run
+   Router10   Router#show run
+   Router5   ROUTER-CONTROLEUR#config t
+   Router5   ROUTER-CONTROLEUR(config)#int tunnel 2
+   Router10   Router#config t
+   Router10   Router(config)#int tunnel 2
+   Router10   Router(config)#int tunnel 2
+   Router10   Router(config)#int ?
+   Router15   Router>en
+   Router15   Router#config t
+   Router15   Router(config)#int g0/0
+   Router15   Router(config)#int f0/0
+   Router15   Router(config-if)#ip add 192.168.10.254 255.255.255.0
+   Router15   Router(config-if)#no shut
+   Router15   Router(config-if)#ex
+   Router15   Router(config)#ip dhcp pool BG1
+   Router15   Router(dhcp-config)#network 192.168.10.0 255.255.255.0
+   Router15   Router(dhcp-config)#default-router 192.168.10.254
+   Router15   Router(dhcp-config)#ip dhcp excluded 192.168.10.254 
+   Router15   Router(config)#ex
+   Switch12   Switch>en
+   Switch12   Switch#reload
+   Router15   Router#config t
+   Router15   Router(config)#int s0/0/0
+   Router15   Router(config-if)#ip add 1.2.1.1 255.255.255.0 
+   Router15   Router(config-if)#no shut
+   Router11   Router>en
+   Router11   Router#config t
+   Router11   Router(config)#int s0/1/0
+   Router11   Router(config-if)##ip add 1.2.1.2 255.255.255.0 
+   Router11   Router(config-if)#ip add 1.2.1.2 255.255.255.0 
+   Router11   Router(config-if)#no shut
+   Multilayer Switch6   Switch>en
+   Multilayer Switch6   Switch#config t
+   Multilayer Switch6   Switch(config)#vlan 40
+   Multilayer Switch6   Switch(config-vlan)#name G1
+   Multilayer Switch7   Switch>en
+   Multilayer Switch7   Switch#confg t
+   Multilayer Switch7   Switch#config t
+   Multilayer Switch7   Switch(config)#vlan 50
+   Multilayer Switch7   Switch(config-vlan)#name D1
+   Multilayer Switch6   Switch(config-vlan)#ex
+   Multilayer Switch6   Switch(config)#int f0/2
+   Multilayer Switch6   Switch(config-if)#switchport mode trunk 
+   Multilayer Switch6   Switch(config-if)#switchport mode access 
+   Multilayer Switch6   Switch(config-if)#switchport mode trunk 
+   Multilayer Switch7   Switch(config-vlan)#ex
+   Multilayer Switch7   Switch(config)#int f0/2
+   Multilayer Switch7   Switch(config-if)#switchport mode access 
+   Multilayer Switch7   Switch(config-if)#switchport mode trunk 
+   Router12   Router>en
+   Router12   Router#config t
+   Router12   Router(config)#int f0/0
+   Router12   Router(config-if)#no shut
+   Router12   Router(config-if)#ex
+   Router12   Router(config)#int f0/0.40
+   Router12   Router(config-subif)#encapsulation dot1Q 40
+   Router12   Router(config-subif)#ip add 192.168.40.254 255.255.255.0
+   Router13   Router>en
+   Router13   Router#config t
+   Router13   Router(config)#int f0/0
+   Router13   Router(config-if)#no shut
+   Router13   Router(config-if)#ex
+   Router13   Router(config)#int f0/0.50
+   Router13   Router(config-subif)#ip add 192.168.50.254 255.255.255.0
+   Router13   Router(config-subif)#encapsulation dot1q 50
+   Router13   Router(config-subif)#ip add 192.168.50.254 255.255.255.0
+   Multilayer Switch6   Switch(config-if)#ex
+   Multilayer Switch6   Switch(config)#int f0/1
+   Multilayer Switch6   Switch(config-if)#switchport mode access 
+   Multilayer Switch6   Switch(config-if)#switchport access vlan 40
+   Multilayer Switch7   Switch(config-if)#ex
+   Multilayer Switch7   Switch(config)#int f0/1
+   Multilayer Switch7   Switch(config-if)#switchport mode access
+   Multilayer Switch7   Switch(config-if)#switchport access vlan 50
+   Router12   Router(config-subif)#ex
+   Router12   Router(config)#ip dhcp pool G1
+   Router12   Router(dhcp-config)#network 192.168.40.0 255.255.255.0
+   Router12   Router(dhcp-config)#default-router 192.168.40.254
+   Router12   Router(dhcp-config)#ip dhcp excluded 192.168.40.254
+   Router13   Router(config-subif)#ex
+   Router13   Router(config)#ip dhcp pool D1
+   Router13   Router(dhcp-config)#network 192.168.50.0 255.255.255.0
+   Router13   Router(dhcp-config)#default-router 192.168.50.254
+   Router13   Router(dhcp-config)#ip dhcp excluded 192.168.50.254
+   Router12   Router(config)#int f0/1
+   Router12   Router(config-if)#ip add 1.1.3.1 255.255.255.0
+   Router12   Router(config-if)#no shut
+   Router11   Router>en
+   Router11   Router#config t
+   Router11   Router(config)#int ethernet 0/0/0
+   Router11   Router(config-if)#no shut
+   ASA2   ciscoasa>en
+   ASA2   ciscoasa#config t
+   ASA2   ciscoasa(config)#int ethernet 0/1
+   ASA2   ciscoasa(config-if)#no shut
+   Router11   Router>en
+   Router11   Router#config t
+   Router11   Router(config)#int serial 0/1/0
+   Router11   Router(config-if)#ip add 1.2.1.3 255.255.255.0
+   Router11   Router(config-if)#no shut
+   Router11   Router(config-if)#int f0/0
+   Router11   Router(config-if)#ip add 1
+   Router11   Router(config-if)#ip add 1.1.3.3 255.255.255.0
+   Router11   Router(config-if)#no shut
+   Router11   Router(config-if)#int f0/1
+   Router11   Router(config-if)#ip add 1.1.4.2 255.255.255.0
+   Router11   Router(config-if)#no shut
+   Router13   Router(config)#int f0/1
+   Router13   Router(config-if)#ip add 1.1.4.1 255.255.255.0
+   Router13   Router(config-if)#no shut
+Wed Feb 2 14:19:17 2022   R9   Router>enable
+Wed Feb 2 14:19:17 2022   R9   Router#configure terminal
+Wed Feb 2 14:19:17 2022   R9   Router(config)#hostname R9
+Wed Feb 2 14:19:27 2022   R8   Router>enable
+Wed Feb 2 14:19:27 2022   R8   Router#configure terminal
+Wed Feb 2 14:19:27 2022   R8   Router(config)#hostname R8
+Wed Feb 2 14:19:37 2022   R10   Router>enable
+Wed Feb 2 14:19:37 2022   R10   Router#configure terminal
+Wed Feb 2 14:19:37 2022   R10   Router(config)#hostname R10
+Wed Feb 2 14:20:05 2022   R0   ROUTEUR-LAN-G>enable
+Wed Feb 2 14:20:05 2022   R0   ROUTEUR-LAN-G#configure terminal
+Wed Feb 2 14:20:05 2022   R0   ROUTEUR-LAN-G(config)#hostname ROUTER-LAN-G
+Wed Feb 2 14:22:35 2022   R0-LAN-G   ROUTER-LAN-G(config)#hostname R0-LAN-G
+Wed Feb 2 14:22:40 2022   L3-SW4-CORE-1   CORE1>enable
+Wed Feb 2 14:22:40 2022   L3-SW4-CORE-1   CORE1#configure terminal
+Wed Feb 2 14:22:40 2022   L3-SW4-CORE-1   CORE1(config)#hostname L3-SW4-CORE-1
+Wed Feb 2 14:22:46 2022   L3-SW5-CORE-2   CORE2>enable
+Wed Feb 2 14:22:46 2022   L3-SW5-CORE-2   CORE2#configure terminal
+Wed Feb 2 14:22:46 2022   L3-SW5-CORE-2   CORE2(config)#hostname L3-SW5-CORE-2
+Wed Feb 2 14:22:50 2022   R3-CORE-2   BACKBONE-2>enable
+Wed Feb 2 14:22:50 2022   R3-CORE-2   BACKBONE-2#configure terminal
+Wed Feb 2 14:22:53 2022   R3-CORE-2   BACKBONE-2(config)#hostname R3-CORE-2
+Wed Feb 2 14:22:58 2022   R4-CORE-1   BACKBONE-1>enable
+Wed Feb 2 14:22:58 2022   R4-CORE-1   BACKBONE-1#configure terminal
+Wed Feb 2 14:22:58 2022   R4-CORE-1   BACKBONE-1(config)#hostname R4-CORE-1
+Wed Feb 2 14:23:19 2022   ASA-0   ciscoasa>enable
+Wed Feb 2 14:23:28 2022   ASA-1   ciscoasa>enable
+Wed Feb 2 14:24:10 2022   L2-SW3-ACCESS-A7   A7>enable
+Wed Feb 2 14:24:10 2022   L2-SW3-ACCESS-A7   A7#configure terminal
+Wed Feb 2 14:24:10 2022   L2-SW3-ACCESS-A7   A7(config)#hostname L2-SW3-ACCESS-A7
+Wed Feb 2 14:24:33 2022   L2-SW4-ACCESS-A8   A8>enable
+Wed Feb 2 14:24:33 2022   L2-SW4-ACCESS-A8   A8#configure terminal
+Wed Feb 2 14:24:33 2022   L2-SW4-ACCESS-A8   A8(config)#hostname L2-SW4-ACCESS-A8
+Wed Feb 2 14:24:48 2022   L2-SW5-ACCESS-A9   A9>enable
+Wed Feb 2 14:24:48 2022   L2-SW5-ACCESS-A9   A9#configure terminal
+Wed Feb 2 14:24:48 2022   L2-SW5-ACCESS-A9   A9(config)#hostname L2-SW5-ACCESS-A9
+Wed Feb 2 14:25:46 2022   L3-SW3-CORE-D1   CORE-D1>enable
+Wed Feb 2 14:25:46 2022   L3-SW3-CORE-D1   CORE-D1#configure terminal
+Wed Feb 2 14:25:46 2022   L3-SW3-CORE-D1   CORE-D1(config)#hostname L3-SW3-CORE-D1
+Wed Feb 2 14:25:59 2022   L3-SW2-CORE-D1   CORE-LAN-D>enable
+Wed Feb 2 14:25:59 2022   L3-SW2-CORE-D1   CORE-LAN-D#configure terminal
+Wed Feb 2 14:26:34 2022   L3-SW2-CORE-LAN-D   CORE-LAN-D(config)#hostname L3-SW2-CORE-LAN-D
+Wed Feb 2 14:32:02 2022   L2-SW6-ACCESS-A4   SW-4>enable
+Wed Feb 2 14:32:02 2022   L2-SW6-ACCESS-A4   SW-4#configure terminal
+Wed Feb 2 14:32:02 2022   L2-SW6-ACCESS-A4   SW-4(config)#hostname L2-SW6-ACCESS-A4
+Wed Feb 2 14:32:15 2022   L2-SW7-ACCESS-A5   SW-5>enable
+Wed Feb 2 14:32:15 2022   L2-SW7-ACCESS-A5   SW-5#configure terminal
+Wed Feb 2 14:32:15 2022   L2-SW7-ACCESS-A5   SW-5(config)#hostname L2-SW7-ACCESS-A5
+Wed Feb 2 14:32:28 2022   L2-SW8-ACCESS-A6   SW-6>enable
+Wed Feb 2 14:32:28 2022   L2-SW8-ACCESS-A6   SW-6#configure terminal
+Wed Feb 2 14:32:28 2022   L2-SW8-ACCESS-A6   SW-6(config)#hostname L2-SW8-ACCESS-A6
+Wed Feb 2 14:33:33 2022   L3-SW0-CORE-D1   LAN-CORE-D-1>enable
+Wed Feb 2 14:33:33 2022   L3-SW0-CORE-D1   LAN-CORE-D-1#configure terminal
+Wed Feb 2 14:33:33 2022   L3-SW0-CORE-D1   LAN-CORE-D-1(config)#hostname L3-SW0-CORE-D1
+Wed Feb 2 14:33:51 2022   L3-SW1-CORE-G2   LAN-CORE-G-2>enable
+Wed Feb 2 14:33:51 2022   L3-SW1-CORE-G2   LAN-CORE-G-2#configure terminal
+Wed Feb 2 14:33:51 2022   L3-SW1-CORE-G2   LAN-CORE-G-2(config)#hostname L3-SW1-CORE-G2
+Wed Feb 2 14:36:16 2022   L2-SW0-ACCESS-LAN-G2   SW-LAN-G2>enable
+Wed Feb 2 14:36:16 2022   L2-SW0-ACCESS-LAN-G2   SW-LAN-G2#configure terminal
+Wed Feb 2 14:36:16 2022   L2-SW0-ACCESS-LAN-G2   SW-LAN-G2(config)#hostname L2-SW0-ACCESS-LAN-G2
+Wed Feb 2 14:36:27 2022   L2-SW0-ACCESS-G2   L2-SW0-ACCESS-LAN-G2(config)#hostname L2-SW0-ACCESS-G2
+Wed Feb 2 14:36:44 2022   L2-SW1-ACCESS-G1   SW-LAN-G>enable
+Wed Feb 2 14:36:44 2022   L2-SW1-ACCESS-G1   SW-LAN-G#configure terminal
+Wed Feb 2 14:36:44 2022   L2-SW1-ACCESS-G1   SW-LAN-G(config)#hostname L2-SW1-ACCESS-G1
+Wed Feb 2 14:37:07 2022   L2-SW2-ACCESS-G2   SW-3>enable
+Wed Feb 2 14:37:07 2022   L2-SW2-ACCESS-G2   SW-3#configure terminal
+Wed Feb 2 14:37:07 2022   L2-SW2-ACCESS-G2   SW-3(config)#hostname L2-SW2-ACCESS-G2
+Wed Feb 2 14:37:15 2022   L2-SW0-ACCESS-G0   L2-SW0-ACCESS-G2(config)#hostname L2-SW0-ACCESS-G0
+Wed Feb 2 14:48:24 2022   R3-CORE-2   R3-CORE-2>en
+Wed Feb 2 14:48:26 2022   R3-CORE-2   R3-CORE-2#conf t
+Wed Feb 2 14:49:33 2022   R11   Router>enable
+Wed Feb 2 14:49:33 2022   R11   Router#configure terminal
+Wed Feb 2 14:49:33 2022   R11   Router(config)#hostname R11
+Wed Feb 2 14:50:04 2022   R10 - II AGH   R10>enable
+Wed Feb 2 14:50:04 2022   R10 - II AGH   R10#configure terminal
+Wed Feb 2 14:50:04 2022   R10 - II AGH   R10(config)#hostname "R10 - II AGH"
+Wed Feb 2 14:50:25 2022   R10 - AGH CS   R10(config)#hostname "R10 - AGH CS"
+Wed Feb 2 14:50:46 2022   R10 - AGH CS   R10(config)#hostname R10-AGH-CS
+Wed Feb 2 14:51:05 2022   R12   Router>enable
+Wed Feb 2 14:51:05 2022   R12   Router#configure terminal
+Wed Feb 2 14:51:05 2022   R12   Router(config)#hostname R12
+Wed Feb 2 14:51:14 2022   R13   Router>enable
+Wed Feb 2 14:51:14 2022   R13   Router#configure terminal
+Wed Feb 2 14:51:14 2022   R13   Router(config)#hostname R13
+Wed Feb 2 14:51:43 2022   R0-LAN-G-AGH-EE   R0-LAN-G>enable
+Wed Feb 2 14:51:43 2022   R0-LAN-G-AGH-EE   R0-LAN-G#configure terminal
+Wed Feb 2 14:51:43 2022   R0-LAN-G-AGH-EE   R0-LAN-G(config)#hostname R0-LAN-G-AGH-EE
+Wed Feb 2 14:51:59 2022   R2-LAN-D-AGH-ICT   ROUTER-LAN-D>enable
+Wed Feb 2 14:51:59 2022   R2-LAN-D-AGH-ICT   ROUTER-LAN-D#configure terminal
+Wed Feb 2 14:51:59 2022   R2-LAN-D-AGH-ICT   ROUTER-LAN-D(config)#hostname R2-LAN-D-AGH-ICT
+Wed Feb 2 14:52:34 2022   L3-SW1-CORE-1   Switch>enable
+Wed Feb 2 14:52:34 2022   L3-SW1-CORE-1   Switch#configure terminal
+Wed Feb 2 14:52:34 2022   L3-SW1-CORE-1   Switch(config)#hostname L3-SW1-CORE-1
+Wed Feb 2 14:52:54 2022   L3-SW2-CORE-2   Switch>enable
+Wed Feb 2 14:52:54 2022   L3-SW2-CORE-2   Switch#configure terminal
+Wed Feb 2 14:52:58 2022   L3-SW2-CORE-2   Switch(config)#hostname L3-SW2-CORE-2
+Wed Feb 2 14:53:43 2022   L2-SW11-ACCESS   Switch>enable
+Wed Feb 2 14:53:43 2022   L2-SW11-ACCESS   Switch#configure terminal
+Wed Feb 2 14:53:43 2022   L2-SW11-ACCESS   Switch(config)#hostname L2-SW11-ACCESS
+Wed Feb 2 14:53:53 2022   L2-SW12-ACCESS   Switch>enable
+Wed Feb 2 14:53:53 2022   L2-SW12-ACCESS   Switch#configure terminal
+Wed Feb 2 14:53:53 2022   L2-SW12-ACCESS   Switch(config)#hostname L2-SW12-ACCESS
+Wed Feb 2 14:54:04 2022   L2-SW13-ACCESS   Switch>enable
+Wed Feb 2 14:54:04 2022   L2-SW13-ACCESS   Switch#configure terminal
+Wed Feb 2 14:54:04 2022   L2-SW13-ACCESS   Switch(config)#hostname L2-SW13-ACCESS
+Wed Feb 2 14:57:15 2022   Router1   INTERNET-RT1>enable
+Wed Feb 2 14:57:15 2022   Router1   INTERNET-RT1#configure terminal
+Wed Feb 2 14:57:15 2022   Router1   INTERNET-RT1(config)#hostname INTERNET-R1
+Wed Feb 2 14:57:27 2022   Router5   ROUTER-CONTROLEUR>enable
+Wed Feb 2 14:57:27 2022   Router5   ROUTER-CONTROLEUR#configure terminal
+Wed Feb 2 14:57:47 2022   CONTROLLER-R5   ROUTER-CONTROLEUR(config)#hostname CONTROLLER-R5
+Thu Feb 10 10:40:19 2022   R3-CORE-2   R3-CORE-2>en
+Thu Feb 10 10:40:21 2022   R3-CORE-2   R3-CORE-2#show running-config 
+Thu Feb 10 10:40:58 2022   R3-CORE-2   R3-CORE-2#conf t
+Thu Feb 10 10:41:03 2022   R3-CORE-2   R3-CORE-2(config)#enable secret 123456
+Thu Feb 10 10:41:05 2022   R3-CORE-2   R3-CORE-2(config)#exit
+Thu Feb 10 10:41:08 2022   R3-CORE-2   R3-CORE-2#show running-config 
+Thu Feb 10 10:41:15 2022   R3-CORE-2   R3-CORE-2#conf t
+Thu Feb 10 10:41:24 2022   R3-CORE-2   R3-CORE-2(config)#service password-encryption 
+Thu Feb 10 10:41:26 2022   R3-CORE-2   R3-CORE-2(config)#exit 
+Thu Feb 10 10:41:31 2022   R3-CORE-2   R3-CORE-2#show running-config 
+Thu Feb 10 10:41:36 2022   R3-CORE-2   R3-CORE-2#exit
+Thu Feb 10 10:41:39 2022   R3-CORE-2   R3-CORE-2>en
+Thu Feb 10 11:29:00 2022   R3-CORE-2   R3-CORE-2>en
+Thu Feb 10 11:29:05 2022   R3-CORE-2   R3-CORE-2#conf t
